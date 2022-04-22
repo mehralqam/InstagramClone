@@ -13,15 +13,18 @@
   <%= render "shared/header" %>
    <p class="notice"><%= notice %></p>
    <p class="alert"><%= alert %></p>
-   <% if user_signed_in? %>
-      <%= current_user.email %>
-      <%= button_to "LOG OUT" , destroy_user_session_path, method: :delete %>
-       <%= link_to 'Edit Profile' ,edit_user_registration_path, class: "btn btn-primary"%>
-
+     <% if user_signed_in? %>
+       <div class="username">
+      <%= current_user.name %>
+      <br>
+      <%= image_tag current_user.avatar , width: "200px" , class: "img-circle"%>
+      </div>
       <% else %>
        <%= link_to 'LOG IN' , new_user_session_path, class: "btn btn-primary"%>
        <%= link_to 'Sign Up' , new_user_registration_path, class: "btn btn-primary"%>
-  <%end%>
+    <%end%>
+
+
    <%= yield %>
  </body>
 </html>

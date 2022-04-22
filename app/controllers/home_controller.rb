@@ -1,8 +1,8 @@
+# home controller
+# frozen_string_literal: true
+
 class HomeController < ApplicationController
-  def index
-  end
+  def index; end
 
-  def homepage
-  end
-
+  def homepage; end
 end
