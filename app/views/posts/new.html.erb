@@ -1,0 +1,6 @@
+<%= form_with(model: @post, local: true) do |form| %>
+  <%= form.label :images %>
+  <%= form.file_field(:images, multiple: true) %>
+  <%= form.submit "Post" %>
+<% end %>
+

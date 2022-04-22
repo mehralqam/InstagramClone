@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -12,13 +14,14 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-  address:              'smtp.gmail.com',
-  port:                 587,
-  domain:               "localhost:3000",
-  user_name:            ENV['GMAIL_ID'],
-  password:             ENV['GMAIL_PWD'],
-  authentication:       'plain',
-  enable_starttls_auto: true }
+    address: 'smtp.gmail.com',
+    port: 587,
+    domain: 'localhost:3000',
+    user_name: 'mehral.qamar@devsinc.com',
+    password: 'unkmdlbndopbrzql',
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
 
   # Show full error reports.
   config.consider_all_requests_local = true
@@ -37,6 +40,7 @@ Rails.application.configure do
 
     config.cache_store = :null_store
   end
+  config.active_storage.service = :local
 
   # Store uploaded files on the local file system (see config/storage.yml for options)
   config.active_storage.service = :local

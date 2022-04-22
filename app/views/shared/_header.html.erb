@@ -1,4 +1,12 @@
-<nav class="navbar navbar-light bg-light justify-content-between">
+<nav class="navbar navbar-light bg-light justify-content">
   <a class="navbar-brand">INSTAGRAM</a>
-  <br>
+    <% if user_signed_in? %>
+       <%= button_to "LOG OUT" , destroy_user_session_path, method: :delete %>
+       <%= link_to 'Edit Profile' ,edit_user_registration_path, class: "btn btn-primary"%>
+        <%= link_to 'Create Post', new_post_path ,class: "btn btn-primary"%>
+        <%= link_to 'Update Story', new_story_path ,class: "btn btn-primary"%>
+        <%= link_to 'My Posts', posts_path ,class: "btn btn-primary"%>
+
+
+  <%end%>
 </nav>
