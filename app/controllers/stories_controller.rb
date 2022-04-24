@@ -4,10 +4,12 @@
 class StoriesController < ApplicationController
   before_action :set_story, only: %i[show]
   def index
-    @stories = Story.all
+    @stories = Story.page params[:page]
   end
 
-  def show; end
+  def show
+    @story = Story.find
+  end
 
   def create
     @story = current_user.stories.new(story_params)
