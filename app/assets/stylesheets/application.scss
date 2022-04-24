@@ -1,21 +1,24 @@
-@import "bootstrap-sprockets";
+
 @import "bootstrap";
-    .navbar{
-      background-color:#D63E81 ;
-    }
-    .navbar-brand
-    {
-      font-size: larger;
-      font-family:cursive;
-      color: black;
-    }
-    .logout
-    {
-      margin-left: 50%;
-    }
-    .username
-    {
-      font-family: Georgia, 'Times New Roman', Times, serif;
-      font-weight: bolder;
-      font-size: large;
-    }
+
+.navbar{
+  background-color:#D63E81 ;
+}
+.navbar-brand
+{
+  font-size: larger;
+  font-family:cursive;
+  color: black;
+}
+.logout
+{
+  margin-left: 50%;
+
+}
+.username
+{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bolder;
+  font-size: large;
+}
+
