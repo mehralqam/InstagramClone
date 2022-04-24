@@ -3,18 +3,18 @@
 
 class StoriesController < ApplicationController
   def index
-    @stories = Story.all
+    @stories = Story.page params[:page]
   end
 
   def show
-    @story = Story.find(params[:id])
+    @story = Story.find
   end
 
   def create
     @story = current_user.stories.new(story_params)
     respond_to do |format|
       if @story.save
-        format.html { redirect_to post_url(@story), notice: 'Story was successfully created.' }
+        format.html { redirect_to action: 'index', notice: 'Story was successfully created.' }
         format.json { render :show, status: :created, location: @story }
 
       else

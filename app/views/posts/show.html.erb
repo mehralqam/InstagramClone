@@ -1,9 +1,6 @@
 
-
-
   <div>
         <% @post.images.each do |image|%>
-         <%= link_to 'Destroy',post_path, method: :destroy, data: { confirm: 'Are you sure?' } %>
         <%= image_tag image , width: "500px"%>
         <% end %>
 </div>

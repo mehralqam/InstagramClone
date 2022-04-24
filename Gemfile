@@ -5,8 +5,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
 gem 'activestorage'
-gem 'bootstrap-sass', '~> 3.3.6'
+# gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise'
+gem 'kaminari'
 gem 'mini_magick'
 gem 'pundit'
 # gem 'mysql2',          '~> 0.4',    :platform => :ruby
