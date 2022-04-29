@@ -15,11 +15,8 @@ class StoriesController < ApplicationController
     respond_to do |format|
       if @story.save
         format.html { redirect_to action: 'index', notice: 'Story was successfully created.' }
-        format.json { render :show, status: :created, location: @story }
-
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @story.errors, status: :unprocessable_entity }
+        format.html { render :new, notice: 'Story was successfully created.' }
       end
     end
   end
@@ -36,7 +33,6 @@ class StoriesController < ApplicationController
     @story.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'story was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 end

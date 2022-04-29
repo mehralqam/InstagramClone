@@ -6,8 +6,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
   has_one_attached :avatar
+
   has_many :followers # , class: 'User'
   has_many :posts
   has_many :stories
   has_many :comments
+  has_many :likes
 end
