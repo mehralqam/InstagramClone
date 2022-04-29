@@ -5,7 +5,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
 gem 'activestorage'
-# gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise'
 gem 'kaminari'
 gem 'mini_magick'
@@ -15,10 +14,7 @@ gem 'sidekiq-cron'
 gem 'sidekiq-scheduler'
 gem 'simple_form'
 
-# gem 'mysql2',          '~> 0.4',    :platform => :ruby
-# gem 'jdbc-mysql',      '~> 5.1.35', :platform => :jruby
-# gem 'thinking-sphinx', '~> 5.4'
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'jquery-rails'
 gem 'rails', '~> 5.2.7'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
