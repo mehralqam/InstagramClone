@@ -8,7 +8,7 @@ class StoriesController < ApplicationController
   end
 
   def show
-    @story = Story.find
+    @story = Story.find_by(:id)
   end
 
   def create
