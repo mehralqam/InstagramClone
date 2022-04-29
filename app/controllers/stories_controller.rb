@@ -7,7 +7,7 @@ class StoriesController < ApplicationController
   end
 
   def show
-    @story = Story.find
+    @story = Story.find_by(:id)
   end
 
   def create
@@ -30,5 +30,13 @@ class StoriesController < ApplicationController
 
   def story_params
     params.require(:story).permit(:image)
+  end
+
+  def destroy
+    @story.destroy
+    respond_to do |format|
+      format.html { redirect_to users_url, notice: 'story was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 end

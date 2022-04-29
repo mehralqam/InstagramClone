@@ -3,11 +3,13 @@
 
 class PostsController < ApplicationController
   def index
-    @posts = policy_scope(Post)
+    @posts = policy_scope(Post).order('created_at DESC')
   end
 
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.where('post_id = ?', params[:id])
+    @users = User.all
   end
 
   def create
@@ -15,11 +17,9 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.save
         format.html { redirect_to action: 'index', notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
 
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        format.html { render :new, notice: 'Post wasnt successfully created.' }
       end
     end
   end
@@ -29,15 +29,26 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post = Post.find(params[:id])
     @post.destroy
-    respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully deleted.' }
-      format.json { head :no_content }
-    end
+    redirect_to posts_path
   end
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to @post
+    else
+      render 'edit'
+    end
   end
 
   def post_params

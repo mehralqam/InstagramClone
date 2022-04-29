@@ -10,6 +10,11 @@ gem 'devise'
 gem 'kaminari'
 gem 'mini_magick'
 gem 'pundit'
+gem 'sidekiq'
+gem 'sidekiq-cron'
+gem 'sidekiq-scheduler'
+gem 'simple_form'
+
 # gem 'mysql2',          '~> 0.4',    :platform => :ruby
 # gem 'jdbc-mysql',      '~> 5.1.35', :platform => :jruby
 # gem 'thinking-sphinx', '~> 5.4'
