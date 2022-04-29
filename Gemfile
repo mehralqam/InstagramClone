@@ -8,12 +8,9 @@ gem 'devise'
 gem 'activestorage'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise'
+gem 'dotenv-rails'
 gem 'mini_magick'
 gem 'pundit'
-# gem 'mysql2',          '~> 0.4',    :platform => :ruby
-# gem 'jdbc-mysql',      '~> 5.1.35', :platform => :jruby
-# gem 'thinking-sphinx', '~> 5.4'
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.7'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'

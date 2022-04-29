@@ -2,24 +2,20 @@
 # frozen_string_literal: true
 
 class StoriesController < ApplicationController
+  before_action :set_story, only: %i[show]
   def index
     @stories = Story.all
   end
 
-  def show
-    @story = Story.find(params[:id])
-  end
+  def show; end
 
   def create
     @story = current_user.stories.new(story_params)
     respond_to do |format|
       if @story.save
         format.html { redirect_to post_url(@story), notice: 'Story was successfully created.' }
-        format.json { render :show, status: :created, location: @story }
-
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @story.errors, status: :unprocessable_entity }
+        format.html { render :new, notice: 'Story not created.' }
       end
     end
   end
@@ -28,7 +24,13 @@ class StoriesController < ApplicationController
     @story = Story.new
   end
 
+  private
+
   def story_params
     params.require(:story).permit(:image)
+  end
+
+  def set_story
+    @story = Story.find_by(params[:id])
   end
 end
