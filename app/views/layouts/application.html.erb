@@ -18,7 +18,9 @@
       <%= current_user.name %>
       </div>
       <br>
-
+   <div>
+      <%= image_tag current_user.avatar , width: "200px" , class: "rounded"%>
+    </div>
       <% else %>
        <%= link_to 'LOG IN' , new_user_session_path, class: "btn btn-outline-dark"%>
        <%= link_to 'Sign Up' , new_user_registration_path, class: "btn btn-outline-dark"%>
