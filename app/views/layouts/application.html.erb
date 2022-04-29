@@ -4,7 +4,6 @@
     <title>InstagramClone</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -17,7 +16,6 @@
       <%= current_user.email %>
       <%= button_to "LOG OUT" , destroy_user_session_path, method: :delete %>
        <%= link_to 'Edit Profile' ,edit_user_registration_path, class: "btn btn-primary"%>
-
       <% else %>
        <%= link_to 'LOG IN' , new_user_session_path, class: "btn btn-primary"%>
        <%= link_to 'Sign Up' , new_user_registration_path, class: "btn btn-primary"%>

@@ -1,3 +1,3 @@
 class UserController < ApplicationController
-  has_one_attached :dp
+  has_one_attached :display_picture
 end
