@@ -10,13 +10,5 @@ class PostPolicy < ApplicationPolicy
     def destroy?
       record.user == user
     end
-
-    # def edit?
-    #   @record.user == current_user
-    # end
-
-    # def delete?
-    #   @record.user == current_user || @record.post.user == current_user
-    # end
   end
 end
