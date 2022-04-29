@@ -9,4 +9,5 @@ class User < ApplicationRecord
   has_many :followers # , class: 'User'
   has_many :posts
   has_many :stories
+  has_many :comments
 end

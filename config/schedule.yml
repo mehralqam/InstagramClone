@@ -1,0 +1,4 @@
+story_cleanup_job:
+  cron: "* * * * *"
+  class: "StoryCleanupJob"
+  queue: default
