@@ -1,6 +1,8 @@
-# home controller
 # frozen_string_literal: true
 
+# app/controllers/comments_controller.rb
+
+# Controller to show comments of users and make new ones
 class CommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])

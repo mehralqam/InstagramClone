@@ -3,16 +3,15 @@ require:
   - rubocop-rails
   - rubocop-rspec # or rubocop-minitest
 
-
 AllCops:
   # Exclude auto-generated files by Rails
   TargetRubyVersion: 2.7
   TargetRailsVersion: 5.2
   Exclude:
-    - 'db/schema.rb'
-    - 'node_modules/**/*'
-    - 'vendor/bundle/**/*'
-    - 'bin/**/*'
+    - "db/schema.rb"
+    - "node_modules/**/*"
+    - "vendor/bundle/**/*"
+    - "bin/**/*"
 
 Layout/LineLength:
   Max: 120
@@ -28,6 +27,3 @@ Metrics/BlockLength:
 Lint/AmbiguousBlockAssociation:
   Exclude:
     - spec/**/*
-
-Style/Documentation:
-  Enabled: false
