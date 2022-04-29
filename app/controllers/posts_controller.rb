@@ -1,6 +1,8 @@
-# post controller
 # frozen_string_literal: true
 
+# app/controllers/posts_controller.rb
+
+# Controller to show posts of users and make new ones
 class PostsController < ApplicationController
   def index
     @posts = policy_scope(Post).order('created_at DESC')
@@ -8,7 +10,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comment = Comment.where('post_id = ?', params[:id])
+    @comment = Comment.new(post: @post)
     @users = User.all
   end
 

@@ -1,6 +1,8 @@
-# post controller
 # frozen_string_literal: true
 
+# app/controllers/storiess_controller.rb
+
+# Controller to show stories of users and make new ones
 class StoriesController < ApplicationController
   def index
     @stories = Story.page params[:page]

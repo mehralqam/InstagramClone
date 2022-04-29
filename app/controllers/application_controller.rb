@@ -1,5 +1,8 @@
-# application controller
 # frozen_string_literal: true
+
+# app/models/user.rb
+
+# Service to download ftp files from the server
 
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?

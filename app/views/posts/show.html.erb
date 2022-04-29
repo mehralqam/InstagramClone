@@ -1,25 +1,19 @@
-
-  <div>
-        <% @post.images.each do |image|%>
-        <%= image_tag image , width: "250px"%>
-        <% end %>
+<div>
+  <% @post.images.each do |image|%>
+  <%= image_tag image , width: "250px"%>
+  <% end %>
 </div>
 <%= link_to 'EDIT' , edit_post_path(@post), class: "btn btn-outline-dark"%>
 <%= link_to 'DELETE' , @post ,method: :destroy, data: {confirm: "are you sre?"}, class: "btn btn-outline-danger"%>
-
 <section >
-
 <h2>Comments</h2>
-
-<div class="d-flex flex-column">
-  <% @comment.each do |comment|%>
-  <div class="p-2"><p class=" d-inline p-2 bg-light text-black"> <%= @users.find(comment.user_id).name %></p></div>
-  <div class="p-2"><p class=" d-inline p-2 bg-dark text-white"> <%= comment.description %></p></div>
-  <% end %>
-</div>
-<%# <%= render @post.comments %>
+    <div class="d-flex flex-column">
+      <% @comment.each do |comment|%>
+          <div class="p-2"><p class=" d-inline p-2 bg-light text-black"> <%= @users.find(comment.user_id).name %></p></div>
+          <div class="p-2"><p class=" d-inline p-2 bg-dark text-white"> <%= comment.description %></p></div>
+          <% end %>
+    </div>
 <h2>Add a comment:</h2>
 <%= render 'comments/form' %>
-
 </div>
 </section>
