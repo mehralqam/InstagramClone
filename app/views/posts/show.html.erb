@@ -2,7 +2,6 @@
 <div class="container">
     <div class="carousel slide " id="my-slider" data-ride="carousel">
       <div class="carousel-inner">
-        <%# <% @post.images.count.times do %>
           <% @post.images.each_with_index do |image,counter|%>
              <% if counter==0%>
                 <div class="carousel-item active " id="first-one">
@@ -24,14 +23,18 @@
             <span class="sr-only">Next</span>
           </a>
     </div>
+    <%= link_to (image_tag('heart.jpg',width:"20px")), post_like_post_path(@post,likes: @post.likes),method: :patch %>
+    <p id="like"><%= @post.likes%></p>
+<div class="card mb-3">
+    <div class="card-body">
+        <%= @post.caption %>
+    </div>
 </div>
-
 <div class="card mb-3">
     <div class="card-header">
         <h4 class="mb-0">Add A Comment:</h4>
     </div>
     <div class="card-body">
-        <%# NOTE COMMENT STEP 3: Load the comment form. %>
         <%= render "comments/form" %>
     </div>
 </div>
@@ -39,7 +42,6 @@
     <div class="card-header">
         <h4>Comments:</h4>
     </div>
-    <%# NOTE COMMENT STEP 3: Wrap the comments in `<div id="comments">` so that you can select the wrapper when using javascript in `app/views/comments/create.js.erb`. %>
     <div id="comments" class="card-body">
         <%= render @post.comments %>
     </div>

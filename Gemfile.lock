@@ -95,6 +95,8 @@ GEM
     ffi (1.15.5-java)
     ffi (1.15.5-x64-mingw32)
     ffi (1.15.5-x86-mingw32)
+    font-awesome-rails (4.7.0.8)
+      railties (>= 3.2, < 8.0)
     fugit (1.5.3)
       et-orbi (~> 1, >= 1.2.7)
       raabro (~> 1.4)
@@ -316,6 +318,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   dotenv-rails
+  font-awesome-rails
   jbuilder (~> 2.5)
   jquery-rails
   kaminari
