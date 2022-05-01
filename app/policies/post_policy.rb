@@ -2,13 +2,12 @@
 
 class PostPolicy < ApplicationPolicy
   class Scope < Scope
-    # NOTE: Be explicit about which records you allow access to!
     def resolve
-      user.posts
+     @user==user
     end
 
     def destroy?
-      record.user == user
+       record.user == user
     end
 
     def edit?
@@ -17,6 +16,10 @@ class PostPolicy < ApplicationPolicy
 
     def delete?
       @record.user == current_user || @record.post.user == current_user
+    end
+
+    def show?
+      record.user == user
     end
   end
 end

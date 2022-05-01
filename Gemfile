@@ -16,6 +16,7 @@ gem 'simple_form'
 
 gem 'jquery-rails'
 gem 'rails', '~> 5.2.7'
+gem "font-awesome-rails"
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
