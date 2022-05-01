@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 class StoriesController < ApplicationController
+  before_action :authenticate_user?, only: [:index,:show,:edit,:update, :destroy, :new]
   def index
     @stories = Story.page params[:page]
   end
@@ -25,14 +26,23 @@ class StoriesController < ApplicationController
     @story = Story.new
   end
 
-  def story_params
-    params.require(:story).permit(:image)
-  end
-
   def destroy
     @story.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'story was successfully destroyed.' }
     end
   end
+
+  private
+  def authenticate_user?
+    if(user_signed_in?)
+      return true
+    else
+      redirect_to root_url, notice: 'You dont have right to view this page.'
+  end
+end
+def story_params
+  params.require(:story).permit(:image)
+end
+
 end

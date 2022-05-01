@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   resources :stories
   resources :posts do
     resources :comments
+    member do
+      patch :post_like
+    end
   end
   root 'users#index'
 end

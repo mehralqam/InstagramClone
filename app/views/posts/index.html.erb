@@ -1,7 +1,6 @@
 <div class="img-fluid img-thumbnail border bg-light">
 <div class="row ">
    <% @posts.each do |post|%>
-      <%# <%= link_to "#{post.id}", post_path(post.id) %>
       <% post.images.each do |image|%>
       <%= link_to post_path(post.id) do %>
       <div class="column d-block mx-auto p-5">
