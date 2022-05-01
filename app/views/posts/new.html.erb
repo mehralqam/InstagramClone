@@ -1,6 +1,8 @@
 <%= form_with(model: @post, local: true) do |form| %>
   <%= form.label :images %>
-  <%= form.file_field(:images, multiple: true, required: true ) %>
+  <%= form.file_field(:images, multiple: true, required: true)%>
+  <%= form.label :caption %>
+  <%= form.text_area :caption,required: true%>
   <%= form.submit "Post" %>
 <% end %>
 

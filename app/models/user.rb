@@ -8,8 +8,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   has_many :followers # , class: 'User'
-  has_many :posts
-  has_many :stories
-  has_many :comments
-  has_many :likes
+  has_many :posts, dependent: :destroy
+  has_many :stories, dependent: :destroy
+  has_many :comments, dependent: :destroy
 end
