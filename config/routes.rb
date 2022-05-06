@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :image_elements
   resources :posts
   resources :stories
+  resources :followships
   resources :posts do
     resources :comments
     member do
