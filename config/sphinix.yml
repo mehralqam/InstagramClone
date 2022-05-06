@@ -1,0 +1,8 @@
+development:
+  min_infix_len: 1
+  charset_table: "0..9, english, U+0021..U+002F"
+  mysql41: 9301
+production:
+  min_infix_len: 1
+  charset_table: "0..9, english, U+0021..U+002F"
+  mysql41: 9302

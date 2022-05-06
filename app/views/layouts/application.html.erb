@@ -14,12 +14,7 @@
    <p class="notice"><%= notice %></p>
    <p class="alert"><%= alert %></p>
      <% if user_signed_in? %>
-       <div class="username">
-      <%= current_user.user_name %>
-      </div>
-      <br>
-   <div>
-      <%= image_tag current_user.avatar , width: "200px" , class: "rounded"%>
+    <div>
     </div>
       <% else %>
        <%= link_to 'LOG IN' , new_user_session_path, class: "btn btn-outline-dark"%>
