@@ -15,12 +15,10 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @post, notice: 'Comment was successfully created.' }
-        # NOTE: COMMENT STEP 1: This will run the code in `app/views/comments/create.js.erb`.
         format.js
       else
         format.html { render action: 'new' }
-        # NOTE: COMMENT STEP 1: This will run the code in `app/views/comments/create.js.erb`.
-        format.js
+]        format.js
       end
     end
   end
