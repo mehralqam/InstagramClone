@@ -1,0 +1,14 @@
+  <div class="float-right">
+  <h4>Suggestions for You</h4>
+  <div class="card" style="width: 18rem;">
+    <% user.each do |follow|%>
+    <%if follow!=current_user && current_user.followers!=follow%>
+    <%= image_tag follow.avatar , width: "200px" , class: "rounded"%>
+    <div class="card-body">
+      <h5 class="card-title"><%= follow.user_name%></h5>
+        <%= button_to 'Follow',followships_path(:follower_id => follow ), :method => :post %>
+    </div>
+  </div>
+      <%end%>
+      <%end%>
+  </div>

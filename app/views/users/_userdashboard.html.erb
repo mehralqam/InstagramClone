@@ -1,0 +1,13 @@
+<div class="d-flex justify-content-center ">
+<div>
+  <%= image_tag current_user.avatar , width: "200px" , class: "rounded-circle"%>
+</div>
+<div class="username h4 ml-4">
+<%= current_user.user_name %>
+</div>
+<div class="h4 ml-4">
+<%= link_to 'FOLLOWERS',followships_path,method: :get%>
+<br>
+<%= current_user.followers.count%>
+</div>
+</div>
