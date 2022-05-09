@@ -6,8 +6,13 @@
 <%= current_user.user_name %>
 </div>
 <div class="h4 ml-4">
-<%= link_to 'FOLLOWERS',followships_path,method: :get%>
+<%= link_to 'Following',followships_path,method: :get%>
 <br>
 <%= current_user.followers.count%>
+</div>
+<div class="h4 ml-4">
+<%= link_to 'Followers',followships_path,method: :get%>
+<br>
+<%= Followship.user_specific_followers(current_user).count%>
 </div>
 </div>
