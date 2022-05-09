@@ -1,4 +1,4 @@
-<h2>Friends</h2>
+<h2>Following</h2>
 <ul>
    <% @followers.each do |follower|%>
     <li>
@@ -7,3 +7,11 @@
   <% end %>
 </ul>
 
+<h2>Followers</h2>
+<ul>
+   <% @my_followers.each do |my_follower|%>
+    <li>
+      <%= find_user(my_follower.user_id).user_name %>
+    </li>
+  <% end %>
+</ul>
