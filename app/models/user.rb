@@ -17,5 +17,5 @@ class User < ApplicationRecord
 
   # ThinkingSphinx::Callbacks.append(self, :behaviours => [:real_time])
 
-
+  scope :can_follow_users, ->(current_user) { where('id != ?', current_user).where("account_type = 'public'") }
 end
