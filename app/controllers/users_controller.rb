@@ -13,8 +13,8 @@ class UsersController < ApplicationController
   def new; end
 
   def index
-    @user=User.all
-
+    @user = User.all
+    @can_follow_users=User.can_follow_users(current_user)
   end
   def update
   if @post.update_attributes(params[:user])
