@@ -1,5 +1,6 @@
 <nav class="navbar navbar-light bg-light justify-content">
-  <a class="navbar-brand">INSTAGRAM</a>
+   <%= link_to 'INSTAGRAM' ,root_path, class: "navbar-brand"%>
+
     <% if user_signed_in? %>
     <div class="btn-group">
        <%= link_to 'Edit Profile' ,edit_user_registration_path, class: "btn btn-outline-dark"%>
