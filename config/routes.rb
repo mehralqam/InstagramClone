@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
   devise_for :users
+  resources :users
   resources :image_elements
   resources :posts
   resources :stories
