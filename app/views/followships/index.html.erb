@@ -1,17 +1,24 @@
-<h2>Following</h2>
+
+<p>Username: <%=h @user.user_name %></p>
+<h2>Followings</h2>
 <ul>
-   <% @followers.each do |follower|%>
+  <% for followship in @user.followships %>
     <li>
-      <%=h follower.user_name %>
+      <%=h followship.follower.user_name %>
+      (<%= link_to "remove", followship, :method => :delete %>)
     </li>
   <% end %>
 </ul>
 
-<h2>Followers</h2>
+<p><%= link_to "Find Friends", users_path %></p>
+
+<h2>Followed by Users</h2>
 <ul>
-   <% @my_followers.each do |my_follower|%>
-    <li>
-      <%= find_user(my_follower.user_id).user_name %>
-    </li>
+  <% for user in @user.inverse_followers %>
+    <li><%=h user.user_name %></li>
   <% end %>
 </ul>
+
+
+
+
