@@ -14,6 +14,7 @@ class FollowshipsController < ApplicationController
   end
 
   def index
+    @user = current_user
     @followers= current_user.followers
     @my_followers=Followship.user_specific_followers(current_user)
   end
@@ -22,6 +23,5 @@ class FollowshipsController < ApplicationController
     @followship = Followship.find(params[:id])
     @followship.destroy
     flash[:notice] = "Removed following."
-    redirect_to current_user
   end
 end
