@@ -5,7 +5,7 @@
     <%= image_tag suggest.avatar , width: "200px" , class: "rounded"%>
     <div class="card-body">
       <h5 class="card-title"><%= suggest.user_name%></h5>
-      <%= link_to 'Follow',followships_path(:follower_id => suggest), :method => :post,class: "btn btn-secondary" %>
+      <%= link_to 'Follow',followships_path(follower_id: suggest), method: "post" ,class: "btn btn-secondary" %>
       </div>
     </div>
   </div>
