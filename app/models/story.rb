@@ -7,5 +7,4 @@ class Story < ApplicationRecord
 
   paginates_per 1
   scope :old, -> { where('created_at <= ?', 24.hours.ago) }
-
 end
