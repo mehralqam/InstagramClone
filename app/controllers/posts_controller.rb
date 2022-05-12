@@ -1,15 +1,9 @@
 # frozen_string_literal: true
 
-<<<<<<< HEAD
-# app/controllers/posts_controller.rb
-
-# Controller to show posts of users and make new ones
-=======
 # app/controller/posts_controller
 
 # Post controller handles all the posts of user
 
->>>>>>> 45dc19f (added Liking post functionality)
 class PostsController < ApplicationController
   before_action :set_post, only: [:edit,:update, :destroy, :post_like]
   before_action :authenticate_user?, only: [:index,:show,:edit,:update, :destroy]
