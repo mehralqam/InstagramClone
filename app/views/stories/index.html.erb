@@ -2,8 +2,10 @@
 <div  class=" img-fluid img-thumbnail rounded mx-auto d-block w-50  border bg-light">
    <% @stories.each do |story|%>
        <%=  image_tag story.image, width: "350px"%>
+        <%= link_to "Delete Story",story_path(story), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-outline-danger" %>
    <%end%>
 
    <%= paginate @stories %>
+
 </div>
 

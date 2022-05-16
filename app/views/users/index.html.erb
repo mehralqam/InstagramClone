@@ -1,0 +1,6 @@
+<% if user_signed_in? %>
+  <%= render  partial: "userdashboard"%>
+  <br>
+  <%= render  partial: "follower", :locals => {:user => @user}%>
+  </div>
+<%end%>

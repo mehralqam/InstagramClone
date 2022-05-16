@@ -15,8 +15,13 @@ gem 'sidekiq-scheduler'
 gem 'simple_form'
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'rails', '~> 5.2.7'
 gem "font-awesome-rails"
+
+# gem 'thinking-sphinx', '~> 5.4'
+gem 'mysql2', '~> 0.5.4'
+gem 'activerecord-mysql2-adapter', '~> 0.0.3'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server

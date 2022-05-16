@@ -8,7 +8,7 @@ class StoriesController < ApplicationController
   end
 
   def show
-    @story = Story.find_by(:id)
+    @story = Story.find(params[:id])
   end
 
   def create
@@ -27,7 +27,7 @@ class StoriesController < ApplicationController
   end
 
   def destroy
-    @story.destroy
+    @stories.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'story was successfully destroyed.' }
     end
