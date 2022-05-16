@@ -3,16 +3,21 @@
   <%= image_tag current_user.avatar , width: "200px" , class: "rounded-circle"%>
 </div>
 <div class="username h4 ml-4">
-<%= current_user.user_name %>
+  <%= current_user.user_name %>
 </div>
 <div class="h4 ml-4">
-<%= link_to 'Following',followships_path,method: :get%>
-<br>
-<%= current_user.followers.count%>
+  <%= link_to 'Following',followships_path,method: :get%>
+  <br>
+  <%= current_user.followers.count%>
 </div>
 <div class="h4 ml-4">
-<%= link_to 'Followers',followships_path,method: :get%>
-<br>
-<%= Followship.user_specific_followers(current_user).count%>
+  <%= link_to 'Followers',followships_path,method: :get%>
+  <br>
+  <%= Followship.user_specific_followers(current_user).count%>
+</div>
+<div class="h4 ml-4">
+  <%= link_to 'Follow Requests',user_followrequests_path(current_user),method: :get%>
+  <br>
+  <%= current_user.followrequests.count%>
 </div>
 </div>

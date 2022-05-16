@@ -15,6 +15,7 @@ gem 'sidekiq-scheduler'
 gem 'simple_form'
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'rails', '~> 5.2.7'
 gem "font-awesome-rails"
 

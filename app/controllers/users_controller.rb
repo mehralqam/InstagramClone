@@ -15,8 +15,9 @@ class UsersController < ApplicationController
    end
 
   def index
-    @user = User.all
+    @user = User.where('id != ?', current_user)
     @can_follow_users = User.can_follow_users(current_user)
+
   end
 
   def update
@@ -25,4 +26,7 @@ class UsersController < ApplicationController
         render edit_user_registration_path
     end
   end
+
+
+
 end
