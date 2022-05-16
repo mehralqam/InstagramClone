@@ -4,8 +4,8 @@
 class FollowshipsController < ApplicationController
   before_action :set_followship, only: [:destroy]
   def create
-      @followship = current_user.followships.build(follower_id:  params[:follower_id])
-      if @followship.save
+    @followship = current_user.followships.build(:follower_id => params[:user_id])
+    if @followship.save
       flash[:notice] = "Added following"
       redirect_to root_url
     else
