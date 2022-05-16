@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
         format.js
       else
         format.html { render action: 'new' }
-]        format.js
+        format.js
       end
     end
   end
