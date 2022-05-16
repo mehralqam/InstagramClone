@@ -8,18 +8,19 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body >
   <%= render "shared/header" %>
    <p class="notice"><%= notice %></p>
    <p class="alert"><%= alert %></p>
-   <% if user_signed_in? %>
-      <%= current_user.email %>
-      <%= button_to "LOG OUT" , destroy_user_session_path, method: :delete %>
-       <%= link_to 'Edit Profile' ,edit_user_registration_path, class: "btn btn-primary"%>
+     <% if user_signed_in? %>
+    <div>
+    </div>
       <% else %>
-       <%= link_to 'LOG IN' , new_user_session_path, class: "btn btn-primary"%>
-       <%= link_to 'Sign Up' , new_user_registration_path, class: "btn btn-primary"%>
-  <%end%>
+       <%= link_to 'LOG IN' , new_user_session_path, class: "btn btn-outline-dark"%>
+       <%= link_to 'Sign Up' , new_user_registration_path, class: "btn btn-outline-dark"%>
+    <%end%>
+
+
    <%= yield %>
  </body>
 </html>

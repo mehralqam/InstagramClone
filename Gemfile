@@ -1,10 +1,29 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
 gem 'devise'
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'activestorage'
+gem 'devise'
+gem 'dotenv-rails'
+gem 'kaminari'
+gem 'mini_magick'
+gem 'pundit'
+gem 'sidekiq'
+gem 'sidekiq-cron'
+gem 'sidekiq-scheduler'
+gem 'simple_form'
+
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'rails', '~> 5.2.7'
+gem "font-awesome-rails"
+
+# gem 'thinking-sphinx', '~> 5.4'
+gem 'mysql2', '~> 0.5.4'
+gem 'activerecord-mysql2-adapter', '~> 0.0.3'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
@@ -36,7 +55,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.1.0', require: false
+# gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
