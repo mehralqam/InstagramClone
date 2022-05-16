@@ -14,7 +14,9 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :stories, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :followrequests, dependent: :destroy
 
   # ThinkingSphinx::Callbacks.append(self, :behaviours => [:real_time])
   scope :can_follow_users, ->(current_user) { where('id != ?', current_user).where("account_type = 'public'") }
+  scope :follow_request, -> (current_user) { where('id != ?', current_user).where("account_type = 'private'") }
 end
