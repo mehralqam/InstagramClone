@@ -13,3 +13,16 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+document.addEventListener('turbolinks:load', () => {
+  const follow_btn = document.getElementById('follow-btn')
+  follow_btn.addEventListener('click', (event) => {
+    follow_btn.innerHTML = 'Request Sent';
+  });
+  const public_follow = document.getElementById('public_follow')
+  public_follow.addEventListener('click', (event) => {
+    public_follow.innerHTML = 'Followed';
+  });
+
+});
+

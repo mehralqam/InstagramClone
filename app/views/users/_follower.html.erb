@@ -1,13 +1,13 @@
   <div class="float-right">
-  <h4>Suggestions for You</h4>
-  <div class="card" style="width: 18rem;">
-    <% @can_follow_users.each do |suggest|%>
-    <%= image_tag suggest.avatar , width: "200px" , class: "rounded"%>
-    <div class="card-body">
-      <h5 class="card-title"><%= suggest.user_name%></h5>
-      <%= link_to 'Follow',followships_path(:follower_id => suggest), :method => :post,class: "btn btn-secondary" %>
-      </div>
-    </div>
-  </div>
+   <h4>Suggestions for You</h4>
+    <div class="card" style="width: 18rem;">
+      <% @user.each do |suggest|%>
+        <%= image_tag suggest.avatar , width: "200px" , class: "rounded"%>
+        <%= suggest.user_name%>
+         <% if User.can_follow_users(current_user).exists?(suggest.id)%>
+         <%= link_to 'Follow',followships_path(:follower_id => suggest), :method => :post,class: "btn btn-secondary" , id: "public_follow", remote: true%>
+          <%end%>
+        <%= render_follow_button(suggest) %>
       <%end%>
+    </div>
   </div>

@@ -7,7 +7,7 @@ class UsersController < ApplicationController
    end
 
   def create
-    @user=User.new
+    @user = User.new
    end
 
   def new
@@ -15,14 +15,18 @@ class UsersController < ApplicationController
    end
 
   def index
-    @user = User.all
-    @can_follow_users=User.can_follow_users(current_user)
+    @user = User.where('id != ?', current_user)
+    @can_follow_users = User.can_follow_users(current_user)
+
   end
 
   def update
-  if @post.update_attributes(params[:user])
-    else
-      render edit_user_registration_path
+    if @post.update_attributes(params[:user])
+      else
+        render edit_user_registration_path
     end
   end
+
+
+
 end
