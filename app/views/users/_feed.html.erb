@@ -1,5 +1,5 @@
 <div>
-  <% followers.each do |follower| %>
+  <% current_user.followers.each do |follower| %>
    <% follower.posts.each do |post|%>
       <% post.images.each do |image|%>
         <%= link_to post_path(post.id) do %>

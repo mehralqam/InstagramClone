@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class FollowerPolicy < ApplicationPolicy
-  byebug
   class Scope < Scope
     def resolve
      @scope.includes(:comments).all
