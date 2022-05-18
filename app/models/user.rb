@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  include PgSearch::Model
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -17,8 +16,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :followrequests, dependent: :destroy
 
-  pg_search_scope :search_users, against: :user_name
-
+  # ThinkingSphinx::Callbacks.append(self, :behaviours => [:real_time])
   scope :can_follow_users, ->(current_user) { where('id != ?', current_user).where("account_type = 'public'") }
   scope :follow_request, -> (current_user) { where('id != ?', current_user).where("account_type = 'private'") }
 end
