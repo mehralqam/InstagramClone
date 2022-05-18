@@ -1,5 +1,5 @@
 <div>
-  <% current_user.inverse_followers. each do |follower| %>
+  <% followers.each do |follower| %>
    <% follower.posts.each do |post|%>
       <% post.images.each do |image|%>
         <%= link_to post_path(post.id) do %>
@@ -17,7 +17,7 @@
         </div>
         <%end%>
       <%end %>
-              <%= render post.comments %>
+            <%= render post.comments %>
           </div>
     <%end%>
   <%end %>

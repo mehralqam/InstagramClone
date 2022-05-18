@@ -1,15 +1,7 @@
-<nav class="navbar navbar-light bg-light justify-content">
+<nav class="navbar navbar-light bg-light ">
    <%= link_to 'INSTAGRAM' ,root_path, class: "navbar-brand"%>
-
     <% if user_signed_in? %>
-    <div class="btn-group">
-       <%= link_to 'Edit Profile' ,edit_user_registration_path, class: "btn btn-outline-dark"%>
-        <%= link_to 'Create Post', new_post_path ,class: "btn btn-outline-dark"%>
-        <%= link_to 'Update Story', new_story_path ,class: "btn btn-outline-dark"%>
-        <%= link_to 'My Posts', posts_path ,class: "btn btn-outline-dark"%>
-        <%= link_to 'View Story', stories_path ,class: "btn btn-outline-dark"%>
-      </div>
-       <%= button_to "LOG OUT" , destroy_user_session_path, method: :delete %>
+        <%= button_to "LOG OUT" , destroy_user_session_path, method: :delete %>
   <%end%>
 </nav>
 

@@ -5,9 +5,10 @@
 # Service to download ftp files from the server
 
 class ApplicationController < ActionController::Base
+  include Pundit::Authorization
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_current_user
-  include Pundit
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   protected
 
@@ -19,11 +20,11 @@ class ApplicationController < ActionController::Base
     posts_path
   end
 
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   private
 
   def user_not_authorized
+    byebug
     flash[:alert] = 'You are not authorized to perform this action.'
     redirect_to root_path
   end
