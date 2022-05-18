@@ -7,24 +7,24 @@
 class FollowrequestsController < ApplicationController
 
   def index
-    @requests = Followrequest.where(follow_user_id: current_user)
+    @requests = Followrequest.where(user_id: current_user)
   end
 
   def create
-    begin
+    # begin
       @request = Followrequest.new(followrequest_params)
       @request.save
-      rescue => e
-    end
+      # rescue => e
+    # end
   end
 
   def new
     @request = Followrequest.new
   end
 
-
   private
+
   def followrequest_params
-    params.permit(:follow_user_id, :user_id, :follow_user_name,:user_name)
+    params.permit(:follow_user_id, :follow_user_name, :user_id, :user_name)
   end
 end

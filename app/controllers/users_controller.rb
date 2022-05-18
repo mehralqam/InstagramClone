@@ -17,18 +17,24 @@ class UsersController < ApplicationController
    end
 
   def index
-    @user = User.where('id != ?', current_user)
+    @users = User.where('id != ?', current_user)
     @can_follow_users = User.can_follow_users(current_user)
+    @searched_users = @users.search_users(params[:search]) if params[:search].present?
 
-  end
-
-  def update
-    if @post.update_attributes(params[:user])
-      else
-        render edit_user_registration_path
+    respond_to do |format|
+      format.js
+      format.html
     end
   end
 
+  # def update
+  #   if @post.update_attributes(params[:user])
+  #     else
+  #       render edit_user_registration_path
+  #   end
+  # end
 
-
+  def user_params
+    params.require(:user).permit(:search)
+  end
 end

@@ -7,5 +7,4 @@ class Followrequest < ApplicationRecord
     pending: 0,
     accepted: 1
   }
-
 end

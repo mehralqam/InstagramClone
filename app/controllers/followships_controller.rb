@@ -3,8 +3,13 @@
 
 class FollowshipsController < ApplicationController
   before_action :set_followship, only: [:destroy]
+
+  def new
+    @followship = current_user.followships.new
+  end
+
   def create
-    @followship = current_user.followships.build(:follower_id => params[:user_id])
+    @followship = Followship.new(followship_params)
     if @followship.save
       flash[:notice] = "Added following"
       redirect_to root_url
@@ -30,8 +35,13 @@ class FollowshipsController < ApplicationController
     end
   end
 
-   private
-   def set_followship
+  private
+
+  def set_followship
     @followship = Followship.find(params[:id])
+  end
+
+  def followship_params
+    params.permit(:user_id, :follower_id)
   end
 end
