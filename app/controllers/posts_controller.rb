@@ -12,6 +12,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = current_user.posts.all
+    authorize @posts
   end
 
   def show

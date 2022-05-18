@@ -23,6 +23,5 @@ document.addEventListener('turbolinks:load', () => {
   public_follow.addEventListener('click', (event) => {
     public_follow.innerHTML = 'Followed';
   });
-
 });
 

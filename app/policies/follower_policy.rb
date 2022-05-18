@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PostPolicy < ApplicationPolicy
+class FollowerPolicy < ApplicationPolicy
   byebug
   class Scope < Scope
     def resolve

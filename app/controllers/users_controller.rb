@@ -19,7 +19,10 @@ class UsersController < ApplicationController
   def index
     @users = User.where('id != ?', current_user)
     @can_follow_users = User.can_follow_users(current_user)
-    @searched_users = @users.search_users(params[:search]) if params[:search].present?
+    @followers = current_user.followers
+    byebug
+    authorize @followers
+    @searched_users = @users.text_search(params[:search]) if params[:search].present?
 
     respond_to do |format|
       format.js
