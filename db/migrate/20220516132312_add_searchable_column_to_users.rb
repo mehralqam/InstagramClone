@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddSearchableColumnToUsers < ActiveRecord::Migration[5.2]
   def change
     def up

@@ -15,11 +15,10 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @post, notice: 'Comment was successfully created.' }
-        format.js
       else
-        format.html { render action: 'new' }
-        format.js
+        format.html { render action: 'new', notice: 'Comment wasnot created.' }
       end
+      format.js
     end
   end
 
@@ -29,7 +28,7 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       redirect_to @comment.post, notice: 'Comment updated.'
     else
-      render 'edit'
+      render 'edit', notice: 'Comment wasnot updated.'
     end
   end
 

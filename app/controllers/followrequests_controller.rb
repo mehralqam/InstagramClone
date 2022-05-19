@@ -5,17 +5,14 @@
 # Requests controller handles all the requests of user
 
 class FollowrequestsController < ApplicationController
-
   def index
     @requests = Followrequest.where(user_id: current_user)
   end
 
   def create
-    # begin
-      @request = Followrequest.new(followrequest_params)
-      @request.save
-      # rescue => e
-    # end
+    @request = Followrequest.new(followrequest_params)
+    @request.save
+  rescue StandardError => e
   end
 
   def new

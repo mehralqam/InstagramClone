@@ -3,24 +3,21 @@
 class FollowerPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-     @scope.includes(:comments).all
+      @scope.includes(:comments).all
     end
- end
+  end
 
- def index
-  byebug
- end
+  def index; end
 
- def destroy?
-  byebug
-  record.user == user
-end
+  def destroy?
+    record.user == user
+  end
 
-def edit?
- @record.user == current_user
-end
+  def edit?
+    @record.user == current_user
+  end
 
-def show?
- record.user == user
-end
+  def show?
+    record.user == user
+  end
 end

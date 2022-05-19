@@ -1,3 +1,10 @@
+<div>
 <% users&.each do |user| %>
-  <%= user.user_name %>
+<h1>Search Resuls: </h1>
+<% byebug %>
+  <%# <%= link_to user_path(user.id) do%>
+    <%# <%= image_tag user.avatar , width: "100px" , class: "rounded-circle"%> %>
+    <%= render partial: "users/userdashboard" ,locals: { user: user}%>
+  <%# <% end %>
 <% end %>
+</div>

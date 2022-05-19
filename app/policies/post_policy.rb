@@ -3,22 +3,20 @@
 class PostPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-     @scope.includes(:comments).all
+      @scope.includes(:comments).all
+      scope = user.posts
     end
- end
+  end
 
- def index
- end
+  def destroy?
+    record.user == user
+  end
 
- def destroy?
-  record.user == user
-end
+  def edit?
+    @record.user == user
+  end
 
-def edit?
- @record.user == current_user
-end
-
-def show?
- record.user == user
-end
+  def show?
+    @record.user == user
+  end
 end

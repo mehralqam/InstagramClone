@@ -11,28 +11,26 @@ class FollowshipsController < ApplicationController
   def create
     @followship = Followship.new(followship_params)
     if @followship.save
-      flash[:notice] = "Added following"
-      redirect_to root_url
+      flash[:notice] = 'Added following'
     else
-      flash[:error] = "Unable to add following."
-      redirect_to root_url
+      flash[:error] = 'Unable to add following.'
     end
+    redirect_to root_url
   end
 
   def index
     @user = current_user
     @followers = current_user.followers
-    @my_followers=Followship.user_specific_followers(current_user)
+    @my_followers = Followship.user_specific_followers(current_user)
   end
 
   def destroy
     if @followship.destroy
-      flash[:notice] = "Successfully Removed"
-      redirect_to root_url
+      flash[:notice] = 'Successfully Removed'
     else
-      flash[:error] = "Unable to Remove"
-      redirect_to root_url
+      flash[:error] = 'Unable to Remove'
     end
+    redirect_to root_url
   end
 
   private

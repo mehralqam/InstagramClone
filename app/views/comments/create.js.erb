@@ -1,4 +1,3 @@
-
 <% if @comment.errors.any? %>
     document.querySelector('#error_explanation') ? document.querySelector('#error_explanation').remove() : null ;
     document.querySelector('#comments-form').insertAdjacentHTML('afterbegin', '<%= escape_javascript(render "shared/validation-messages", object: @comment) %>');

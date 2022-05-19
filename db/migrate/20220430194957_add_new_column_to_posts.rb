@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class AddNewColumnToPosts < ActiveRecord::Migration[5.2]
   def change
-    add_column :posts, :likes, :int, :default=>0
+    add_column :posts, :likes, :int, default: 0
   end
 end
