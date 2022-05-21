@@ -1,24 +1,25 @@
-# README
+# INSTAGRAM CLONE APP
+* This is a rails app that clones many functionalities of Instagram ( A social media site)
+# Prerequisits
+* Git
+* Ruby v 2.7.2
+* Rails v 5.2.8
+* PostresSQL 14.3
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Configuration
+### Clone repository and move to app directory
+* git clone https://github.com/mehralqam/InstagramClone
+* cd instagram-clone
 
-Things you may want to cover:
+## Install Dependencies
+* bundle
 
-* Ruby version
+## Enviornmenral Variables
+* GMAIL_ID=
+* GMAIL_PWD=
 
-* System dependencies
+## Database
+* rails db:create db:migrate
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Server
+* rails s
