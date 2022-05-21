@@ -1,10 +1,9 @@
 <div>
-<% users&.each do |user| %>
 <h1>Search Resuls: </h1>
-<% byebug %>
-  <%# <%= link_to user_path(user.id) do%>
-    <%# <%= image_tag user.avatar , width: "100px" , class: "rounded-circle"%> %>
-    <%= render partial: "users/userdashboard" ,locals: { user: user}%>
-  <%# <% end %>
+<% users&.each do |user| %>
+   <h2> <%= user.user_name %> </h2>
+   <%= link_to user_path(user.id) do%>
+    <%= image_tag user.avatar , width: "100px" , class: "rounded-circle"%>
+   <% end %>
 <% end %>
 </div>

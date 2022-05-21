@@ -12,7 +12,7 @@ class AddSearchableColumnToUsers < ActiveRecord::Migration[5.2]
     end
 
     def down
-      remove_column :users, :searchable
+      remove_column :users, :searchable, :string
     end
   end
 end

@@ -2,12 +2,13 @@
    <h4>Suggestions for You</h4>
     <div class="card" style="width: 18rem;">
       <% users.each do |suggest|%>
-        <%= image_tag suggest.avatar , width: "200px" , class: "rounded"%>
+        <%= image_tag suggest.avatar , width: "200px" , class: "rounded-circle"%>
         <%= suggest.user_name %>
-         <% if User.can_follow_users(current_user).exists?(suggest.id)%>
-          <%= link_to 'Follow', followships_path(user_id: current_user.id, follower_id: suggest.id), method: :post,class: "btn btn-secondary" , id: "public_follow", remote: true%>
+        <% if current_user.followers.exists?(suggest.id)%>
+          <button type="button" class="btn btn-secondary" disabled>Followed</button>
+          <% else%>
+          <%= render_follow_button(suggest) %>
         <% end %>
-        <%= render_follow_button(suggest) %>
-      <%end%>
+      <% end %>
     </div>
   </div>

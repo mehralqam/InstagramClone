@@ -5,19 +5,17 @@
 # Post controller handles all the posts of user
 
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[edit update destroy post_like]
-  before_action :authenticate_user?, only: %i[index show edit update destroy]
-
-  before_action :like_inc, only: [:post_like]
+  before_action :set_post, only: %i[update destroy]
+  before_action :authenticate_user?, only: %i[index show update destroy]
 
   def index
-    @posts = policy_scope(Post)
+    @posts = Post.all
   end
 
   def show
     @post = Post.find(params[:id])
+    authorize @post
     @comment = Comment.new(post: @post)
-    @users = User.all
   end
 
   def create
@@ -41,18 +39,8 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
-  def edit; end
-
   def update
-    if @post.update_attributes(params[:post])
-    else
-      render 'edit'
-    end
-  end
-
-  def post_like
-    @post.update(likes: @post.likes)
-    redirect_to @post
+    @post.update(params[:post])
   end
 
   private
@@ -71,9 +59,5 @@ class PostsController < ApplicationController
     else
       redirect_to root_url, notice: 'You dont have right to view this page.'
     end
-  end
-
-  def like_inc
-    @post.likes = @post.likes + 1
   end
 end

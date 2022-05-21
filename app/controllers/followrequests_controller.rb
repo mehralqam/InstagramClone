@@ -12,7 +12,6 @@ class FollowrequestsController < ApplicationController
   def create
     @request = Followrequest.new(followrequest_params)
     @request.save
-  rescue StandardError => e
   end
 
   def new

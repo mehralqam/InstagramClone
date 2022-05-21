@@ -11,14 +11,11 @@ Rails.application.routes.draw do
     end
   end
   resources :image_elements
-  resources :posts
+  resources :posts do
+    resources :likes
+    resources :comments
+  end
   resources :stories
   resources :followships
-  resources :posts do
-    resources :comments
-    member do
-      patch :post_like
-    end
-  end
   root 'users#index'
 end

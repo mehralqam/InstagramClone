@@ -4,7 +4,6 @@ class PostPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       @scope.includes(:comments).all
-      scope = user.posts
     end
   end
 
@@ -13,10 +12,10 @@ class PostPolicy < ApplicationPolicy
   end
 
   def edit?
-    @record.user == user
+    record.user == user
   end
 
   def show?
-    @record.user == user
+    record.user_id == user || record.user.inverse_followers.includes(user)
   end
 end

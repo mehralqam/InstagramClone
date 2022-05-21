@@ -1,9 +1,10 @@
 <% if user_signed_in? %>
-    <div>
-    <%= link_to posts_path do%>
-    <%= image_tag current_user.avatar , width: "100px" , class: "rounded-circle"%>
-    <h3><%= current_user.user_name %></h3>
-    <% end %>
+    <div class="d-flex justify-content-start p-5">
+      <% current_user.followers.each do |follower| %>
+        <%= link_to story_path(follower.id) do%>
+        <%= image_tag follower.avatar , width: "50px" , class: "rounded-circle"%>
+        <% end %>
+      <% end %>
     </div>
     <div class=" d-flex justify-content-center mb-5 ">
       <%= form_tag(users_path, method: :get, remote: true, "data-type": :"script") do %>
@@ -16,8 +17,9 @@
       </div>
       <div class = "search_result ">
         <%= render partial: "search", locals: { users: @searched_users } %>
+
       </div>
       <div>
         <%= render partial: "feed"%>
       </div>
-<%end%>
+ <%end%>

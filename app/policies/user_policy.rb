@@ -14,8 +14,4 @@ class UserPolicy < ApplicationPolicy
   def edit?
     @record.user == current_user
   end
-
-  def show?
-    ecord.user == user
-  end
 end

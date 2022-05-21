@@ -6,9 +6,11 @@
     <% end %>
     <br>
     <br>
-    <%= link_to 'Edit Profile' ,edit_user_registration_path, class: "btn btn-outline-dark"%>
-    <%= link_to 'Create Post', new_post_path ,class: "btn btn-outline-dark"%>
-    <%= link_to 'Update Story', new_story_path ,class: "btn btn-outline-dark"%>
+    <% if user == current_user %>
+    <%= link_to 'Edit Profile' ,edit_user_registration_path, class: "btn btn-outline-light"%>
+    <%= link_to 'Create Post', new_post_path ,class: "btn btn-outline-light"%>
+    <%= link_to 'Update Story', new_story_path ,class: "btn btn-outline-light"%>
+    <% end %>
   </div>
   <div class = "h4 ml-4">
     <%= link_to 'Following',followships_path,method: :get%>
@@ -20,10 +22,12 @@
     <br>
     <%= Followship.user_specific_followers(user).count%>
   </div>
+  <% if user == current_user %>
   <div class = "h4 ml-4">
     <%= link_to 'Follow Requests', user_followrequests_path(user) %>
     <br>
     <%= user.followrequests.count %>
    </div>
+   <% end %>
 </div>
 

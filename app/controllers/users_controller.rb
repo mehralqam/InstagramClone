@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 # app / controllers / Users_controller.rb
 
@@ -6,6 +6,14 @@
 class UsersController < ApplicationController
   def create
     @user = User.new
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to action: 'index', notice: 'User was successfully created.' }
+
+      else
+        format.html { render :index, notice: 'User wasnt successfully created.' }
+      end
+    end
   end
 
   def new
@@ -14,23 +22,29 @@ class UsersController < ApplicationController
 
   def index
     @users = User.where('id != ?', current_user)
-    @can_follow_users = User.can_follow_users(current_user)# @followers = current_user.followers# authorize @followers
-    @searched_users = @users.search_users(params[:search]) if params[:search].present?
-    respond_to do |format |
+    @can_follow_users = User.can_follow_users(current_user)
+    @searched_users = @users.search_users(params[:search]) if params[:search]
+    respond_to do |format|
       format.js
       format.html
     end
   end
 
+  def show
+    @user = User.find_by(id: params[:id])
+    flash[:notice] = if @user.present?
+                       'User exist'
+                     else
+                       'User not exist'
+                     end
+  end
+
   def search_results
-    render partial: 'users/userdashboard', locals: {user: params[:user]}, class: 'btn btn-secondary'
+    render partial: 'users/userdashboard', locals: { user: params[:user] }, class: 'btn btn-secondary'
   end
 
   def update
-    if @post.update_attributes(params[:user])
-    else
-      render edit_user_registration_path
-    end
+    @post.update(params[:user])
   end
 
   def user_params

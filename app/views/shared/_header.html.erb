@@ -1,6 +1,9 @@
-<nav class="navbar navbar-light bg-light ">
+<nav class="navbar">
    <%= link_to 'INSTAGRAM' ,root_path, class: "navbar-brand"%>
     <% if user_signed_in? %>
+        <%= link_to posts_path do%>
+        <span><%= image_tag current_user.avatar , width: "30px" , class: "rounded-circle" %><p><%= current_user.user_name %></p></span>
+        <% end %>
         <%= button_to "LOG OUT" , destroy_user_session_path, method: :delete %>
   <%end%>
 </nav>

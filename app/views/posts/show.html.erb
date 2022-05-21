@@ -22,8 +22,13 @@
             <span class="sr-only">Next</span>
           </a>
     </div>
-    <%= link_to (image_tag('heart.jpg',width:"20px")), post_like_post_path(@post,likes: @post.likes),method: :patch, remote: true, id: "like-button"  %>
-    <p id="like"><%= @post.likes%></p>
+     <% pre_like = @post.likes.find { |like| like.user_id == current_user.id} %>
+     <% if pre_like %>
+      <%= button_to 'Unlike', post_like_path(@post, pre_like), method: :delete ,class: "fa-thin fa-heart"%>
+      <% else %>
+      <%= button_to 'Like', post_likes_path(@post), method: :post %>
+      <% end %>
+      <p><%= @post.likes.count %> </p>
      <%= link_to "Delete Post",  post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-outline-danger" %>
 
 <div class="card mb-3">

@@ -6,7 +6,6 @@
 
 class ApplicationController < ActionController::Base
   include Pundit::Authorization
-
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_current_user
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
@@ -30,5 +29,11 @@ class ApplicationController < ActionController::Base
 
   def set_current_user
     @current = @user
+  end
+
+  begin
+    create
+  rescue StandardError
+    'You are not authorized for the action'
   end
 end

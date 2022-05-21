@@ -2,25 +2,35 @@ require:
   - rubocop-performance
   - rubocop-rails
   - rubocop-rspec # or rubocop-minitest
+
 AllCops:
   # Exclude auto-generated files by Rails
   TargetRubyVersion: 2.7
   TargetRailsVersion: 5.2
   Exclude:
-    - "db/**/*"
-    - "node_modules/**/*"
-    - "vendor/bundle/**/*"
-    - "bin/**/*"
+    - 'db/schema.rb'
+    - 'node_modules/**/*'
+    - 'vendor/bundle/**/*'
+    - 'bin/**/*'
+
 Layout/LineLength:
+  Exclude:
+    - config/**/*
   Max: 120
+
 Metrics/MethodLength:
+  Exclude:
+    - config/**/*
   Max: 23
+
 Metrics/BlockLength:
   Exclude:
     - config/**/*
     - spec/**/*
+
 Lint/AmbiguousBlockAssociation:
   Exclude:
     - spec/**/*
+
 Style/Documentation:
   Enabled: false
