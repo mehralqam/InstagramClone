@@ -40,8 +40,7 @@ gem 'turbolinks', '~> 5'
 gem 'fancynotifications'
 gem 'jbuilder', '~> 2.5'
 gem 'pg_search', '~> 2.3', '>= 2.3.2'
-gem 'seed_dump'
-
+gem 'traceroute'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

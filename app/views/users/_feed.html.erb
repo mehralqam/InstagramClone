@@ -1,4 +1,4 @@
-<% current_user.followers.each do |follower| %>
+<% current_user.followers&.each do |follower| %>
   <% follower.posts.each do |post|%>
     <% post.images.each do |image|%>
         <div class="container mt-4 mb-5">

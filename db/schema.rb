@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 2022_05_20_142611) do
   create_table "followrequests", force: :cascade do |t|
     t.string "follow_user_id", null: false
     t.string "follow_user_name"
-    t.integer "request_status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "user_id", null: false
@@ -86,7 +85,6 @@ ActiveRecord::Schema.define(version: 2022_05_20_142611) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.string "caption", limit: 200, default: "", null: false
-    t.integer "likes", default: 0
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 

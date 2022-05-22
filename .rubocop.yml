@@ -12,6 +12,7 @@ AllCops:
     - 'node_modules/**/*'
     - 'vendor/bundle/**/*'
     - 'bin/**/*'
+    - '*/bin/**/*'
 
 Layout/LineLength:
   Exclude:

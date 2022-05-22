@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
-  validates :images, presence: true
+  # validates :images, presence: true
   has_many_attached :images
 
   belongs_to :user

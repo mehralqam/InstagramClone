@@ -8,10 +8,10 @@ class CommentsController < ApplicationController
   before_action :set_post, only: %i[create edit update]
 
   def create
-    @post = Post.find(params[:post_id])
-    @comment = @post.comments.new(comment_params)
-    @comment.user_id = current_user.id
-    @comment.save
+    @comment = @post.comments.new(comment_params).tap do |c|
+      c.user_id = current_user.id
+      c.save!
+    end
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @post, notice: 'Comment was successfully created.' }
@@ -25,6 +25,7 @@ class CommentsController < ApplicationController
   def edit; end
 
   def update
+    authorize @comment
     if @comment.update(comment_params)
       redirect_to @comment.post, notice: 'Comment updated.'
     else
@@ -34,18 +35,21 @@ class CommentsController < ApplicationController
 
   def destroy
     authorize @comment
-    @comment.destroy
-    redirect_to @comment.post, notice: 'Comment successfully deleted.'
+    if @comment.destroy
+      redirect_to @comment.post, notice: 'Comment successfully deleted.'
+    else
+      redirect_to @comment.post, notice: 'Comment was not deleted.'
+    end
   end
 
   private
 
   def set_post
-    @post = Post.find(params[:post_id])
+    @post = Post.find_by(id: params[:post_id])
   end
 
   def set_comment
-    @comment = Comment.find(params[:id])
+    @comment = Comment.find_by(id: params[:id])
   end
 
   def comment_params

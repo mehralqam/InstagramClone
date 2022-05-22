@@ -48,6 +48,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:search)
+    params.require(:user).permit(:search, :avatar)
   end
 end

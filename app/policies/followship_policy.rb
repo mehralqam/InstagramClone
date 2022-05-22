@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-class FollowerPolicy < ApplicationPolicy
+class FollowshipPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      @scope.includes(:comments).all
+      @scope.all
     end
   end
 

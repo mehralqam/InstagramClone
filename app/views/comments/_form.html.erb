@@ -4,7 +4,6 @@
     <% end  %>
 <% else  %>
     <%= form_with model:[@post, @comment], local: true do |f| %>
-        <%= render "shared/validation-messages", object: f.object %>
         <%= render 'comments/form-fields', f: f %>
     <% end  %>
 <% end  %>
