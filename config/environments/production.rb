@@ -47,12 +47,13 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
-    port: 587,
-    domain: 'localhost:3000',
+    port: 465,
+    domain: 'gmail.com',
     user_name: ENV['GMAIL_ID'],
     password: ENV['GMAIL_PWD'],
     authentication: 'plain',
-    enable_starttls_auto: true
+    enable_starttls_auto: true,
+    ssl: true
   }
 
   # Mount Action Cable outside main process or domain
