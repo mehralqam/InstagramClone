@@ -9,24 +9,23 @@
   </head>
 
   <body >
-  <% flash.each do |key, value| %>
-    <div id="notice_wrapper" class="h-2">
-      <div class="<%= key %>">
-        <a class="alert_close"></a>
-        <%= value %>
+    <% flash.each do |key, value| %>
+      <div id="notice_wrapper" class="h-2">
+        <div class="<%= key %>">
+          <a class="alert_close"></a>
+          <%= value %>
+        </div>
       </div>
-    </div>
-  <% end %>
-  <%= render "shared/header" %>
-     <% if user_signed_in? %>
-    <div>
-    </div>
-      <% else %>
-       <%= link_to 'LOG IN' , new_user_session_path, class: "btn btn-outline-dark"%>
-       <%= link_to 'Sign Up' , new_user_registration_path, class: "btn btn-outline-dark"%>
+    <% end %>
+    <%= render "shared/header" %>
+    <% if user_signed_in? %>
+      <div>
+      </div>
+    <% else %>
+      <%= link_to 'LOG IN' , new_user_session_path, class: "btn btn-outline-dark"%>
+      <%= link_to 'Sign Up' , new_user_registration_path, class: "btn btn-outline-dark"%>
     <%end%>
 
-
-   <%= yield %>
- </body>
+    <%= yield %>
+  </body>
 </html>

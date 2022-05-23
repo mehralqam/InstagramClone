@@ -19,8 +19,8 @@ class User < ApplicationRecord
 
   has_many :followships, dependent: :destroy
   has_many :followers, through: :followships
-  has_many :inverse_followships, class_name: 'Followship', foreign_key:
-  'follower_id', dependent: :destroy, inverse_of: 'user'
+  has_many :inverse_followships, class_name: :Followship, foreign_key:
+  :follower_id, dependent: :destroy, inverse_of: 'user'
   has_many :inverse_followers, through: :inverse_followships, source: :user
   has_many :posts, dependent: :destroy
   has_many :stories, dependent: :destroy

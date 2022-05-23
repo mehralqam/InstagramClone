@@ -1,9 +1,9 @@
 <div  class=" img-fluid img-thumbnail rounded mx-auto d-block w-50  border bg-light">
-   <% @user_story.each do |story|%>
-       <%=  image_tag story.image, width: "350px"%>
-       <% if story.user_id == current_user.id%>
-        <%= link_to "Delete Story",story_path(story), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-outline-danger" %>\
-        <% end %>
-   <%end%>
-   <%= paginate @user_story %>
+  <% @user_story.each do |story|%>
+    <%=  image_tag story.image, width: "350px"%>
+    <% if story.user_id == current_user.id%>
+      <%= link_to "Delete Story",story_path(story), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-outline-danger" %>\
+    <% end %>
+  <%end%>
+  <%= paginate @user_story %>
 </div>

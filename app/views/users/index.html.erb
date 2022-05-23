@@ -1,21 +1,21 @@
 <% if user_signed_in? %>
-    <div class="d-flex justify-content-start p-5">
-      <%= render partial: "story"%>
-    </div>
-    <div class=" d-flex justify-content-center mb-5 ">
-      <%= form_tag(users_path, method: :get, remote: true, "data-type": :"script") do %>
-        <%= text_field_tag(:search, params[:search]) %>
-        <%= button_tag("Search", type: "submit",class:"btn btn-outline mb1 blue") %>
-      <%end%>
-      </div>
-      <div>
-        <%= render partial: "follower", locals: { users: @users } %>
-      </div>
-      <div class = "search_result ">
-        <%= render partial: "search", locals: { users: @searched_users } %>
+  <div class="d-flex justify-content-start p-5">
+    <%= render partial: "story"%>
+  </div>
+  <div class=" d-flex justify-content-center mb-5 ">
+    <%= form_tag(users_path, method: :get, remote: true, "data-type": :"script") do %>
+      <%= text_field_tag(:search, params[:search]) %>
+      <%= button_tag("Search", type: "submit", class:"btn btn-outline mb1 blue") %>
+    <%end%>
+  </div>
+  <div>
+    <%= render partial: "follower", locals: { users: @users } %>
+  </div>
+  <div class = "search_result ">
+    <%= render partial: "search", locals: { users: @searched_users } %>
 
-      </div>
-      <div>
-        <%= render partial: "feed"%>
-      </div>
- <%end%>
+  </div>
+  <div>
+    <%= render partial: "feed"%>
+  </div>
+<%end%>

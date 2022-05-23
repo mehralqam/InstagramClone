@@ -23,7 +23,6 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.save
         format.html { redirect_to action: 'index', notice: 'Post was successfully created.' }
-
       else
         format.html { render :new, notice: 'Post wasnt successfully created.' }
       end
