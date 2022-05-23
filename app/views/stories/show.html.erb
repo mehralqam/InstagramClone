@@ -1,26 +1,9 @@
-<div  class=" img-fluid img-thumbnail rounded mx-auto d-block w-50  border">
-    <div class="carousel slide " id="my-story-slider" data-ride="carousel">
-      <div class="carousel-inner">
-         <% @user_story.each_with_index do |story,counter|%>
-             <% if counter==0%>
-                <div class="carousel-item active " id="first-one">
-                <%= image_tag story.image , width: "500px"%>
-                </div>
-                <%else%>
-                <div class="carousel-item ">
-                <%= image_tag story.image , width: "500px"%>
-                </div>
-              <% end %>
-             <%end%>
-       </div>
-          <a class="carousel-control-prev" href="#my-slider" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#my-slider" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-    </div>
+<div  class=" img-fluid img-thumbnail rounded mx-auto d-block w-50  border bg-light">
+   <% @user_story.each do |story|%>
+       <%=  image_tag story.image, width: "350px"%>
+       <% if story.user_id == current_user.id%>
+        <%= link_to "Delete Story",story_path(story), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-outline-danger" %>\
+        <% end %>
+   <%end%>
+   <%= paginate @user_story %>
 </div>
-

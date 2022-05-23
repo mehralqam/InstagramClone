@@ -10,12 +10,12 @@ Rails.application.routes.draw do
       get :search_results
     end
   end
-  resources :image_elements, except: %i[index create new edit show update destroy]
+  resources :image_elements
   resources :posts, except: %i[edit] do
-    resources :likes, only: :create
+    resources :likes
     resources :comments, except: %i[index new show]
   end
-  resources :stories, except: %i[update edit]
+  resources :stories
   resources :followships, except: %i[edit show update]
   root 'users#index'
 end
