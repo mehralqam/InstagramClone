@@ -1,0 +1,17 @@
+
+<%= render partial: "users/userdashboard" ,locals: { user: current_user } %>
+
+<div class="img-fluid img-thumbnail border bg-light">
+<div class="row ">
+   <% @posts.each do |post|%>
+      <% post.images.each do |image|%>
+      <%= link_to post_path(post.id) do %>
+      <div class="column d-block mx-auto p-5">
+      <%= image_tag image , width: "400px", height: "400px"%>
+      </div>
+      <%end%>
+   <% end %>
+ <%end%>
+</div>
+
+</div>

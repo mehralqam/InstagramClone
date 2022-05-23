@@ -1,0 +1,7 @@
+<nav class="navbar navbar-light bg-light ">
+   <%= link_to 'INSTAGRAM' ,root_path, class: "navbar-brand"%>
+    <% if user_signed_in? %>
+        <%= button_to "LOG OUT" , destroy_user_session_path, method: :delete %>
+  <%end%>
+</nav>
+

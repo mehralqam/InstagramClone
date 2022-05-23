@@ -1,5 +1,8 @@
 {
   "name": "instagram-clone",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "font-awesome": "^4.7.0",
+    "mysql2": "^2.3.3"
+  }
 }

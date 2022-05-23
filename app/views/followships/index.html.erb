@@ -1,0 +1,20 @@
+<p>Username: <%=h @user.user_name %></p>
+<h2>Followings</h2>
+<ul>
+  <% for followship in @user.followships %>
+    <li>
+      <%=h followship.follower.user_name %>
+      (<%= link_to "remove", followship, method: :delete %>)
+    </li>
+  <% end %>
+</ul>
+
+<p><%= link_to "Find Friends", users_path %></p>
+
+<h2>Followers</h2>
+<ul>
+  <% for user in @user.inverse_followers %>
+    <li><%=h user.user_name %>
+    </li>
+  <% end %>
+</ul>

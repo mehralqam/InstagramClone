@@ -4,12 +4,23 @@
     <title>InstagramClone</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
+  <body >
+  <%= render "shared/header" %>
+   <p class="notice"><%= notice %></p>
+   <p class="alert"><%= alert %></p>
+     <% if user_signed_in? %>
+    <div>
+    </div>
+      <% else %>
+       <%= link_to 'LOG IN' , new_user_session_path, class: "btn btn-outline-dark"%>
+       <%= link_to 'Sign Up' , new_user_registration_path, class: "btn btn-outline-dark"%>
+    <%end%>
+
+
+   <%= yield %>
+ </body>
 </html>
