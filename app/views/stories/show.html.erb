@@ -3,6 +3,7 @@
     <%=  image_tag story.image, width: "350px"%>
     <% if story.user_id == current_user.id%>
       <%= link_to "Delete Story",story_path(story), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-outline-danger" %>
+      <%= link_to "Edit Story",edit_story_path(story), method: :get, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-outline-primary" %>
     <% end %>
   <%end%>
   <%= paginate @user_story %>

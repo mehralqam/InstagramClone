@@ -42,9 +42,6 @@ class StoriesController < ApplicationController
   def edit; end
 
   def update
-    # updated_story = current_user.stories.create(story_params)
-    # flash[:notice] = 'Story not updated ' if updated_story.blank?
-    # @user_story = Story.where(user_id: current_user.id)
     if current_user.stories.create(story_params)
       redirect_to root_path, notice: 'Story updated.'
     else
@@ -60,6 +57,7 @@ class StoriesController < ApplicationController
 
   def set_story
     @story = Story.find_by(id: params[:id])
+    flash[:notice] = "Story with id #{params[:id]} doesnt exist" if @story.blank?
   end
 
   def authorize_story

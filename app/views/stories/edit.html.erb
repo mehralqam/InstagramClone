@@ -1,4 +1,3 @@
-<% byebug %>
 <%= form_with model: @story, local: true do |form| %>
   <%= form.label :image %>
   <%= form.file_field(:image, multiple: false, required: true) %>

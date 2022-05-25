@@ -14,7 +14,6 @@ class LikesController < ApplicationController
     else
       @post.likes.create(user_id: current_user.id)
     end
-    redirect_to post_path(@post)
   end
 
   def destroy
@@ -23,7 +22,6 @@ class LikesController < ApplicationController
     else
       @like.destroy
     end
-    redirect_to post_path(@post)
   end
 
   private
@@ -35,7 +33,7 @@ class LikesController < ApplicationController
 
   def set_post
     @post = Post.find_by(id: params[:post_id])
-    return redirect_to root_path if @post.nil?
+    flash[:notice] = "Post with id #{params[:id]} doesnt exist" if @post.nil?
   end
 
   def already_liked?

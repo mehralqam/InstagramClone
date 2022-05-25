@@ -24,9 +24,9 @@
   </div>
   <% pre_like = set_post_like(@post) %>
   <% if pre_like %>
-    <%= button_to 'Unlike', post_like_path(@post, pre_like), method: :delete ,class: "fa-thin fa-heart"%>
+  <%= link_to 'Unlike', post_like_path(@post, pre_like), method: :delete , data: { 'js-un-like-link' => true },remote: true%>
   <% else %>
-    <%= button_to 'Like', post_likes_path(@post), method: :post %>
+  <%= link_to 'Like', post_likes_path(@post), method: :post , data: { 'js-like-link' => true },remote: true%>
   <% end %>
   <p><%= @post.likes.count %> </p>
   <%= link_to "Delete Post",  post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-outline-danger" %>

@@ -12,6 +12,6 @@ class Post < ApplicationRecord
   validate :image_limit
 
   def image_limit
-    errors.add(:images, " can't be over 10") if images.length > 2
+    errors.add(:images, " can't be over 10") if images.length > 10
   end
 end

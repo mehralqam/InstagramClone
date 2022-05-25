@@ -38,10 +38,6 @@ gem 'fancynotifications'
 gem 'pg_search', '~> 2.3', '>= 2.3.2'
 gem 'popper_js', '~> 2.9', '>= 2.9.3'
 
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
-end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
@@ -68,4 +64,5 @@ group :development, :test do
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec' # or gem 'rubocop-rspec' depending on your test suite
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end

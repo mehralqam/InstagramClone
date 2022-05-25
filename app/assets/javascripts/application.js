@@ -28,11 +28,17 @@ $(document).ready(function () {
   $('[data-js-un-like-link]').click(function (event) {
     $('[data-js-un-like-link]').text('like');
     event.preventDefault();
-  });
-  $('[data-js-like-link]').click(function (event) {
-    $('[data-js-like-link]').text('unlike');
-    event.preventDefault();
-  });
-})
 
-
+  });
+},
+  $(document).ready(function () {
+    $('[data-js-like-link]').click(function (event) {
+      $('[data-js-like-link]').text('unlike');
+      event.preventDefault();
+      window.location.reload();
+    });
+    // $(document).ajaxSuccess(function () {
+    //   window.location.reload();
+    // });
+  })
+)

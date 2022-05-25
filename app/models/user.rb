@@ -18,10 +18,6 @@ class User < ApplicationRecord
   has_many :follow_requests, dependent: :destroy
   has_many :likes, dependent: :destroy
 
-  # scope :open_account_users, -> { where(account_type: 'open') }
-  # scope :closed_account_users, -> { where(account_type: 'closed') }
-  # scope :open_account_users, -> { where('created_at <= ?', 24.hours.ago) }
-  # scope :private_account_users, ->(user) { where('id != ?', user).closed }
   scope :open_account_users, ->(user) { where('id != ?', user).open }
   scope :private_account_users, ->(user) { where('id != ?', user).closed }
 

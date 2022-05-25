@@ -17,9 +17,9 @@
               <% end %>
               <% pre_like = set_post_like(post) %>
               <% if pre_like %>
-                <%= button_to 'Unlike', post_like_path(post, pre_like), method: :delete , data: { 'js-un-like-link' => true }%>
+                <%= link_to 'Unlike', post_like_path(post, pre_like), method: :delete , data: { 'js-un-like-link' => true },remote: true %>
               <% else %>
-                <%= button_to 'Like', post_likes_path(post), method: :post , data: { 'js-like-link' => true }%>
+                <%= link_to 'Like', post_likes_path(post), method: :post , data: { 'js-like-link' => true },remote: true %>
               <% end %>
               <p class="text-dark"><%= post.likes.count %> </p>
               <%= link_to 'See All Comments' , post_path(post.id) %>

@@ -57,7 +57,7 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find_by(id: params[:id])
-    return redirect_to root_path if @post.nil?
+    flash[:notice] = "Post with id #{params[:id]} doesnt exist" if @post.nil?
   end
 
   def authorize_post

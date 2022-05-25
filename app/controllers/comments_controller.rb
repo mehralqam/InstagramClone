@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: %i[edit update destroy]
   before_action :set_post, only: %i[create edit update]
   before_action :authorize_comment, only: %i[destroy update]
+
   def create
     @comment = @post.comments.new(comment_params)
     respond_to do |format|

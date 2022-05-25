@@ -37,7 +37,7 @@ class FollowshipsController < ApplicationController
 
   def set_followship
     @followship = Followship.find_by(id: params[:id])
-    return redirect_to root_path if @followship.nil?
+    flash[:notice] = "Followship with id #{params[:id]} doesnt exist" if @followship.blank?
   end
 
   def followship_params
