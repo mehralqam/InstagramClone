@@ -2,16 +2,6 @@
 
 class User < ApplicationRecord
   include PgSearch::Model
-  pg_search_scope(
-    :search_users,
-    against: {
-      user_name: 'A'
-    },
-    using: {
-      tsearch: { prefix: true, any_word: true, dictionary: 'english' }
-    }
-  )
-
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
@@ -25,9 +15,28 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :stories, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :followrequests, dependent: :destroy
+  has_many :follow_requests, dependent: :destroy
   has_many :likes, dependent: :destroy
 
-  scope :can_follow_users, ->(current_user) { where('id != ?', current_user).where("account_type = 'public'") }
-  scope :follow_request, ->(current_user) { where('id != ?', current_user).where("account_type = 'private'") }
+  # scope :open_account_users, -> { where(account_type: 'open') }
+  # scope :closed_account_users, -> { where(account_type: 'closed') }
+  # scope :open_account_users, -> { where('created_at <= ?', 24.hours.ago) }
+  # scope :private_account_users, ->(user) { where('id != ?', user).closed }
+  scope :open_account_users, ->(user) { where('id != ?', user).open }
+  scope :private_account_users, ->(user) { where('id != ?', user).closed }
+
+  enum account_type: {
+    open: 0,
+    closed: 1
+  }
+
+  pg_search_scope(
+    :search_users,
+    against: {
+      user_name: 'A'
+    },
+    using: {
+      tsearch: { prefix: true, any_word: true, dictionary: 'english' }
+    }
+  )
 end

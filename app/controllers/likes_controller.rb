@@ -5,8 +5,8 @@
 # likes controller handles all the post likes of user
 
 class LikesController < ApplicationController
-  before_action :find_post
-  before_action :find_like, only: [:destroy]
+  before_action :set_post
+  before_action :set_like, only: [:destroy]
 
   def create
     if already_liked?
@@ -26,14 +26,16 @@ class LikesController < ApplicationController
     redirect_to post_path(@post)
   end
 
-  def find_like
-    @like = @post.likes.find(params[:id])
-  end
-
   private
 
-  def find_post
-    @post = Post.find(params[:post_id])
+  def set_like
+    @like = @post.likes.find_by(id: params[:id])
+    flash[:notice] = "Like with id #{params[:id]} doesnt exist" if @like.blank?
+  end
+
+  def set_post
+    @post = Post.find_by(id: params[:post_id])
+    return redirect_to root_path if @post.nil?
   end
 
   def already_liked?

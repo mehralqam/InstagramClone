@@ -6,7 +6,7 @@ user1 = User.new(
   email: 'mehral.qamar@devsinc.com',
   password: 'mehral',
   password_confirmation: 'mehral',
-  account_type: 'public'
+  account_type: 0
 )
 user1.avatar.attach(io: File.open(Rails.root.join('app/assets/images/cat.jpg')), filename: 'cat.jpg')
 user1.skip_confirmation!
@@ -17,7 +17,7 @@ user2 = User.new(
   email: 'mehralqamar6@gmail.com',
   password: 'mehral',
   password_confirmation: 'mehral',
-  account_type: 'private'
+  account_type: 1
 )
 user2.avatar.attach(io: File.open(Rails.root.join('app/assets/images/heart.jpg')), filename: 'heart.jpg')
 user2.skip_confirmation!

@@ -11,10 +11,6 @@ class CommentPolicy < ApplicationPolicy
     record.user.eql? user or record.post.user.eql? user
   end
 
-  def edit?
-    record.user.eql? user
-  end
-
   def update?
     record.user.eql? user
   end

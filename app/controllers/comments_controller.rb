@@ -6,17 +6,14 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[edit update destroy]
   before_action :set_post, only: %i[create edit update]
-
+  before_action :authorize_comment, only: %i[destroy update]
   def create
-    @comment = @post.comments.new(comment_params).tap do |c|
-      c.user_id = current_user.id
-      c.save!
-    end
+    @comment = @post.comments.new(comment_params)
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @post, notice: 'Comment was successfully created.' }
+        format.html { redirect_to @post, notice: 'Comment successfully created.' }
       else
-        format.html { render action: 'new', notice: 'Comment wasnot created.' }
+        format.html { render action: 'new', notice: 'Comment not created.' }
       end
       format.js
     end
@@ -29,7 +26,7 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       redirect_to @comment.post, notice: 'Comment updated.'
     else
-      render 'edit', notice: 'Comment wasnot updated.'
+      render 'edit', notice: 'Comment not updated.'
     end
   end
 
@@ -38,7 +35,7 @@ class CommentsController < ApplicationController
     if @comment.destroy
       redirect_to @comment.post, notice: 'Comment successfully deleted.'
     else
-      redirect_to @comment.post, notice: 'Comment was not deleted.'
+      redirect_to @comment.post, notice: 'Comment not deleted.'
     end
   end
 
@@ -53,6 +50,12 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:description)
+    params.require(:comment).permit(:description).tap do |additional_params|
+      additional_params[:user_id] = current_user.id
+    end
+  end
+
+  def authorize_comment
+    authorize @comment
   end
 end

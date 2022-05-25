@@ -36,7 +36,8 @@ class FollowshipsController < ApplicationController
   private
 
   def set_followship
-    @followship = Followship.find(params[:id])
+    @followship = Followship.find_by(id: params[:id])
+    return redirect_to root_path if @followship.nil?
   end
 
   def followship_params

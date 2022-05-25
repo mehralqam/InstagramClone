@@ -7,15 +7,19 @@ class PostPolicy < ApplicationPolicy
     end
   end
 
+  def create
+    record.user == user
+  end
+
   def destroy?
     record.user == user
   end
 
-  def edit?
+  def update?
     record.user == user
   end
 
   def show?
-    record.user_id == user || record.user.inverse_followers.includes(user)
+    record.user_id == user.id || record.user.inverse_followers.exists?(user.id)
   end
 end

@@ -13,16 +13,26 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require fancynotifications
+//= require popper
 //= require_tree .
 
-document.addEventListener('turbolinks:load', () => {
-  const follow_btn = document.getElementById('follow-btn')
-  follow_btn.addEventListener('click', (event) => {
-    follow_btn.innerHTML = 'Request Sent';
+$(document).ready(function () {
+  $('[data-js-request-link]').click(function (event) {
+    $('[data-js-request-link]').text('Request sent');
+    event.preventDefault();
   });
-  const public_follow = document.getElementById('public_follow')
-  public_follow.addEventListener('click', (event) => {
-    public_follow.innerHTML = 'Followed';
+  $('[data-js-public-link]').click(function (event) {
+    $('[data-js-public-link]').text('Followed');
+    event.preventDefault();
   });
-});
+  $('[data-js-un-like-link]').click(function (event) {
+    $('[data-js-un-like-link]').text('like');
+    event.preventDefault();
+  });
+  $('[data-js-like-link]').click(function (event) {
+    $('[data-js-like-link]').text('unlike');
+    event.preventDefault();
+  });
+})
+
 

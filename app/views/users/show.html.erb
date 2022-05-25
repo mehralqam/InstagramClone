@@ -1,5 +1,5 @@
 <% if @user.present? %>
-  <%= render partial: "userdashboard" ,locals: { user: @user}%>
+  <%= render partial: "dashboard" ,locals: { user: @user}%>
   <% if current_user.followers.include?(@user) %>
     <%= render partial: "posts/all_posts" ,locals: { posts: @user.posts } %>
   <%end%>

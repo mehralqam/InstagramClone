@@ -41,19 +41,17 @@ ActiveRecord::Schema.define(version: 2022_05_20_142611) do
     t.datetime "updated_at", null: false
     t.string "description", limit: 300, default: "", null: false
     t.bigint "user_id", null: false
-    t.bigint "post_id"
+    t.bigint "post_id", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "followrequests", force: :cascade do |t|
+  create_table "follow_requests", force: :cascade do |t|
     t.string "follow_user_id", null: false
-    t.string "follow_user_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "user_id", null: false
-    t.string "user_name"
-    t.index ["follow_user_id", "user_id"], name: "index_followrequests_on_follow_user_id_and_user_id", unique: true
+    t.index ["follow_user_id", "user_id"], name: "index_follow_requests_on_follow_user_id_and_user_id", unique: true
   end
 
   create_table "followships", force: :cascade do |t|
@@ -72,8 +70,8 @@ ActiveRecord::Schema.define(version: 2022_05_20_142611) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.bigint "post_id"
-    t.bigint "user_id"
+    t.bigint "post_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_likes_on_post_id"
@@ -108,7 +106,7 @@ ActiveRecord::Schema.define(version: 2022_05_20_142611) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "user_name", default: "", null: false
-    t.string "account_type", default: "", null: false
+    t.integer "account_type", default: 0, null: false
     t.index ["email"], name: "index_users_on_email"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end

@@ -6,7 +6,7 @@
       <%= suggest.user_name %>
       <% if current_user.followers.exists?(suggest.id)%>
         <button type="button" class="btn btn-secondary" disabled>Followed</button>
-      <% elsif suggest.followrequests.exists?(follow_user_id: current_user.id) %>
+      <% elsif suggest.follow_requests.exists?(follow_user_id: current_user.id) %>
         <button type="button" class="btn btn-secondary" disabled>Request Sent</button>
       <% else %>
         <%= render_follow_button(suggest) %>

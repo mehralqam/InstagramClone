@@ -11,7 +11,7 @@ class UserPolicy < ApplicationPolicy
     record.user == user
   end
 
-  def edit?
-    @record.user == current_user
+  def update?
+    record.user == current_user
   end
 end

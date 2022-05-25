@@ -6,6 +6,7 @@
 class StoriesController < ApplicationController
   before_action :authenticate_user?, only: %i[index show destroy new]
   before_action :set_story, only: %i[destroy update edit]
+  before_action :authorize_story, only: %i[destroy]
 
   def index
     @stories = Story.all
@@ -19,9 +20,9 @@ class StoriesController < ApplicationController
     @story = current_user.stories.new(story_params)
     respond_to do |format|
       if @story.save
-        format.html { redirect_to users_url, notice: 'Story was successfully created.' }
+        format.html { redirect_to users_url, notice: 'Story successfully created.' }
       else
-        format.html { render :new, notice: 'Story wasnt successfully created.' }
+        format.html { render :new, notice: 'Story not created successfully .' }
       end
     end
   end
@@ -31,30 +32,39 @@ class StoriesController < ApplicationController
   end
 
   def destroy
-    authorize @story
-    @story.destroy
-    respond_to do |format|
-      format.html do
-        redirect_to users_url, notice: 'story was successfully destroyed.'
-      end
-    end
+    flash[:notice] = if @story.destroy
+                       'Story successfully removed '
+                     else
+                       'Story could not be removed '
+                     end
   end
 
-  def edit
-    @story = Story.find(params[:id])
-  end
+  def edit; end
 
   def update
-    current_user.stories.create!(story_params)
-    @user_story = Story.where(user_id: current_user.id)
-    if current_user.stories.create!(story_params)
+    # updated_story = current_user.stories.create(story_params)
+    # flash[:notice] = 'Story not updated ' if updated_story.blank?
+    # @user_story = Story.where(user_id: current_user.id)
+    if current_user.stories.create(story_params)
       redirect_to root_path, notice: 'Story updated.'
     else
-      render 'edit', notice: 'Story wasnot updated.'
+      render 'edit', notice: 'Story not updated.'
     end
   end
 
   private
+
+  def story_params
+    params.require(:story).permit(:image)
+  end
+
+  def set_story
+    @story = Story.find_by(id: params[:id])
+  end
+
+  def authorize_story
+    authorize @story
+  end
 
   def authenticate_user?
     if user_signed_in?
@@ -62,13 +72,5 @@ class StoriesController < ApplicationController
     else
       redirect_to root_url, notice: 'You dont have right to view this page.'
     end
-  end
-
-  def story_params
-    params.require(:story).permit(:image)
-  end
-
-  def set_story
-    @story = Story.find(params[:id])
   end
 end

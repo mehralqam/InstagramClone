@@ -4,13 +4,13 @@
 
 # Requests controller handles all the requests of user
 
-class FollowrequestsController < ApplicationController
+class FollowRequestsController < ApplicationController
   def index
-    @requests = Followrequest.where(user_id: current_user)
+    @requests = current_user.follow_requests.all
   end
 
   def create
-    @request = Followrequest.new(followrequest_params)
+    @request = FollowRequest.new(follow_request_params)
     if @request.save
       flash[:notice] = 'Request sent'
     else
@@ -19,12 +19,12 @@ class FollowrequestsController < ApplicationController
   end
 
   def new
-    @request = Followrequest.new
+    @request = FollowRequest.new
   end
 
   private
 
-  def followrequest_params
-    params.permit(:follow_user_id, :follow_user_name, :user_id, :user_name)
+  def follow_request_params
+    params.permit(:follow_user_id, :user_id)
   end
 end

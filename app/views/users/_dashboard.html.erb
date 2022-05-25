@@ -8,6 +8,14 @@
       <%= link_to 'Edit Profile' ,edit_user_registration_path, class: "btn btn-outline-light"%>
       <%= link_to 'Create Post', new_post_path ,class: "btn btn-outline-light"%>
       <%= link_to 'Update Story', new_story_path ,class: "btn btn-outline-light"%>
+    <% else %>
+      <% if current_user.followers.exists?(user.id) %>
+        <%= link_to('Followed', remote: true, class: 'btn btn-secondary', disabled: true) %>
+      <% elsif user.follow_requests.exists?(follow_user_id: current_user.id) %>
+        <%= link_to('Request sent', class: 'btn btn-secondary', disabled: true) %>
+      <% else %>
+        <%= render_follow_button(user) %>
+      <% end %>
     <% end %>
   </div>
   <div class = "h4 ml-4">
@@ -22,9 +30,9 @@
   </div>
   <% if user == current_user %>
     <div class = "h4 ml-4">
-      <%= link_to 'Follow Requests', user_followrequests_path(user) %>
+      <%= link_to 'Follow Requests', user_follow_requests_path(user) %>
       <br>
-      <%= user.followrequests.count %>
+      <%= user.follow_requests.count %>
     </div>
   <% end %>
 </div>
