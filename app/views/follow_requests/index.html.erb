@@ -1,7 +1,7 @@
 <h2>Follow requests</h2>
 <ul>
   <% @requests.each do |request|%>
-    <%= set_user(request.follow_user_id).user_name%>
+    <%= user(request.follow_user_id).user_name%>
     <%= link_to 'Accept', followships_path(user_id: request.follow_user_id,
     follower_id: request.user_id),
     method: :post,class: "btn btn-secondary", remote: true %>

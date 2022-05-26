@@ -12,9 +12,9 @@ class FollowRequestsController < ApplicationController
   def create
     @request = FollowRequest.new(follow_request_params)
     if @request.save
-      flash[:notice] = 'Request sent'
+      flash[:notice] = 'Your Request is successfully sent'
     else
-      flash[:error] = 'You have already requested'
+      flash[:error] = 'Something went wrong, Please try again.'
     end
   end
 

@@ -3,7 +3,7 @@
   <% users&.each do |user| %>
     <h2> <%= user.user_name %> </h2>
     <%= link_to user_path(user.id) do%>
-      <%= image_tag user.avatar , width: "100px" , class: "rounded-circle"%>
+      <%= image_tag user.avatar , width: '100px' , class: 'rounded-circle'%>
     <% end %>
   <% end %>
 </div>

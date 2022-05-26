@@ -11,9 +11,9 @@ class FollowshipsController < ApplicationController
   def create
     @followship = Followship.new(followship_params)
     if @followship.save
-      flash[:notice] = 'Added following'
+      flash[:notice] = 'User successfully added in your followings'
     else
-      flash[:error] = 'Unable to add following.'
+      flash[:error] = 'Something went wrong, Unable to add following.'
     end
     redirect_to root_url
   end
@@ -26,9 +26,9 @@ class FollowshipsController < ApplicationController
 
   def destroy
     if @followship.destroy
-      flash[:notice] = 'Successfully Removed'
+      flash[:notice] = 'User is successfully removed'
     else
-      flash[:error] = 'Unable to Remove'
+      flash[:error] = 'Something went wrong,Unable to Remove'
     end
     redirect_to root_url
   end

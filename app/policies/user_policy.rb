@@ -7,11 +7,27 @@ class UserPolicy < ApplicationPolicy
     end
   end
 
-  def destroy?
-    record.user == user
+  def index
+    true
+  end
+
+  def create?
+    true
+  end
+
+  def new?
+    true
+  end
+
+  def show?
+    true
   end
 
   def update?
-    record.user == current_user
+    record.user == user
+  end
+
+  def edit?
+    record.user == user
   end
 end

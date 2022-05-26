@@ -41,8 +41,10 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
+  def edit; end
+
   def update
-    flash[:notice] = if @post.update(params[:post])
+    flash[:notice] = if @post.update(post_params)
                        'Post updated '
                      else
                        'Something went wrong please try again'
@@ -57,7 +59,7 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find_by(id: params[:id])
-    flash[:notice] = "Post with id #{params[:id]} doesnt exist" if @post.nil?
+    flash[:notice] = "Post with id #{params[:id]} doesnt exist" if @post.blank?
   end
 
   def authorize_post

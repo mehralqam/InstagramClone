@@ -12,9 +12,9 @@ class CommentsController < ApplicationController
     @comment = @post.comments.new(comment_params)
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @post, notice: 'Comment successfully created.' }
+        format.html { redirect_to @post, notice: 'Comment created successfully' }
       else
-        format.html { render action: 'new', notice: 'Comment not created.' }
+        format.html { render action: 'new', notice: 'Something went wrong, Please try again' }
       end
       format.js
     end
@@ -23,20 +23,18 @@ class CommentsController < ApplicationController
   def edit; end
 
   def update
-    authorize @comment
     if @comment.update(comment_params)
-      redirect_to @comment.post, notice: 'Comment updated.'
+      redirect_to @comment.post, notice: 'Your comment is successfully updated'
     else
-      render 'edit', notice: 'Comment not updated.'
+      render 'edit', notice: 'Something went wrong, comment is not updated'
     end
   end
 
   def destroy
-    authorize @comment
     if @comment.destroy
-      redirect_to @comment.post, notice: 'Comment successfully deleted.'
+      redirect_to @comment.post, notice: 'Your comment is successfully deleted'
     else
-      redirect_to @comment.post, notice: 'Comment not deleted.'
+      redirect_to @comment.post, notice: 'Something went wrong, comment is not deleted'
     end
   end
 
@@ -44,10 +42,12 @@ class CommentsController < ApplicationController
 
   def set_post
     @post = Post.find_by(id: params[:post_id])
+    flash[:notice] = "Post with id #{params[:id]} doesnt exist" if @post.blank?
   end
 
   def set_comment
     @comment = Comment.find_by(id: params[:id])
+    flash[:notice] = 'Comment doesnt exist' if @comment.blank?
   end
 
   def comment_params

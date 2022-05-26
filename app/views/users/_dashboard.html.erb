@@ -1,13 +1,13 @@
-<div class="d-flex justify-content-center parent">
-  <div class = "username h4 ml-4">
-    <%= image_tag user.avatar , width: "200px" , class: "rounded-circle"%>
+<div class='d-flex justify-content-center parent'>
+  <div class = 'username h4 ml-4'>
+    <%= image_tag user.avatar , width: '200px' , class: 'rounded-circle'%>
     <h3><%= user.user_name %></h3>
     <br>
     <br>
     <% if user == current_user %>
-      <%= link_to 'Edit Profile' ,edit_user_registration_path, class: "btn btn-outline-light"%>
-      <%= link_to 'Create Post', new_post_path ,class: "btn btn-outline-light"%>
-      <%= link_to 'Update Story', new_story_path ,class: "btn btn-outline-light"%>
+      <%= link_to 'Edit Profile' ,edit_user_registration_path, class: 'btn btn-outline-light'%>
+      <%= link_to 'Create Post', new_post_path ,class: 'btn btn-outline-light'%>
+      <%= link_to 'Update Story', new_story_path ,class: 'btn btn-outline-light'%>
     <% else %>
       <% if current_user.followers.exists?(user.id) %>
         <%= link_to('Followed', remote: true, class: 'btn btn-secondary', disabled: true) %>
@@ -18,18 +18,18 @@
       <% end %>
     <% end %>
   </div>
-  <div class = "h4 ml-4">
-    <%= link_to 'Following',followships_path,method: :get%>
+  <div class = 'h4 ml-4'>
+    <%= link_to 'Following',disable: true ,method: :get%>
     <br>
     <%= user.followers.count%>
   </div>
-  <div class = "h4 ml-4">
-    <%= link_to 'Followers',followships_path,method: :get%>
+  <div class = 'h4 ml-4'>
+    <%= link_to 'Followers',disable: true ,method: :get%>
     <br>
     <%= Followship.user_specific_followers(user).count%>
   </div>
   <% if user == current_user %>
-    <div class = "h4 ml-4">
+    <div class = 'h4 ml-4'>
       <%= link_to 'Follow Requests', user_follow_requests_path(user) %>
       <br>
       <%= user.follow_requests.count %>

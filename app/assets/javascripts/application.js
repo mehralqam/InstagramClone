@@ -30,15 +30,12 @@ $(document).ready(function () {
     event.preventDefault();
 
   });
-},
-  $(document).ready(function () {
-    $('[data-js-like-link]').click(function (event) {
-      $('[data-js-like-link]').text('unlike');
-      event.preventDefault();
-      window.location.reload();
-    });
-    // $(document).ajaxSuccess(function () {
-    //   window.location.reload();
-    // });
-  })
-)
+  $('[data-js-like-link]').click(function (event) {
+    $('[data-js-like-link]').text('unlike');
+    event.preventDefault();
+    window.location.reload();
+  });
+})
+
+
+

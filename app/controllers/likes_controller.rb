@@ -7,10 +7,11 @@
 class LikesController < ApplicationController
   before_action :set_post
   before_action :set_like, only: [:destroy]
+  before_action :authorize_like, only: %i[destroy create]
 
   def create
     if already_liked?
-      flash[:notice] = "You can't like more than once"
+      flash[:notice] = 'You have already liked this post'
     else
       @post.likes.create(user_id: current_user.id)
     end
@@ -18,7 +19,7 @@ class LikesController < ApplicationController
 
   def destroy
     if !already_liked?
-      flash[:notice] = 'Cannot unlike'
+      flash[:notice] = 'Something went wrong,You can not unlike this post'
     else
       @like.destroy
     end
@@ -38,5 +39,9 @@ class LikesController < ApplicationController
 
   def already_liked?
     Like.where(user_id: current_user.id, post_id: params[:post_id]).exists?
+  end
+
+  def authorize_like
+    authorize @like
   end
 end

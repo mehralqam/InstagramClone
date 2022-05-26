@@ -1,13 +1,13 @@
-<div class="float-right">
+<div class='float-right'>
   <h4>Suggestions for You</h4>
-  <div class="card" style="width: 18rem;">
+  <div class='card' style='width: 18rem;'>
     <% users&.each do |suggest|%>
-      <%= image_tag suggest.avatar , width: "200px" , class: "rounded-circle"%>
+      <%= image_tag suggest.avatar , width: '200px' , class: 'rounded-circle'%>
       <%= suggest.user_name %>
       <% if current_user.followers.exists?(suggest.id)%>
-        <button type="button" class="btn btn-secondary" disabled>Followed</button>
+        <button type='button' class='btn btn-secondary' disabled>Followed</button>
       <% elsif suggest.follow_requests.exists?(follow_user_id: current_user.id) %>
-        <button type="button" class="btn btn-secondary" disabled>Request Sent</button>
+        <button type='button' class='btn btn-secondary' disabled>Request Sent</button>
       <% else %>
         <%= render_follow_button(suggest) %>
       <% end %>

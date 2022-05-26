@@ -15,7 +15,7 @@ module UserHelper
     end
   end
 
-  def set_post_like(post)
+  def post_like(post)
     post.likes.find { |like| like.user_id == current_user.id }
   end
 end

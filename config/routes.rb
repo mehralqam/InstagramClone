@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
   resources :image_elements
   resources :posts, except: %i[edit] do
-    resources :likes, except: %i[new update edit ]
+    resources :likes, except: %i[new update edit]
     resources :comments, except: %i[index new show]
   end
   resources :stories

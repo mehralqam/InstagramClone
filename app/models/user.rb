@@ -18,8 +18,9 @@ class User < ApplicationRecord
   has_many :follow_requests, dependent: :destroy
   has_many :likes, dependent: :destroy
 
-  scope :open_account_users, ->(user) { where('id != ?', user).open }
-  scope :private_account_users, ->(user) { where('id != ?', user).closed }
+  scope :open_account_users, ->(user) { where.not(id: user).open }
+  scope :private_account_users, ->(user) { where.not(id: user).closed }
+  scope :other_users, ->(user) { where.not(id: user.id) }
 
   enum account_type: {
     open: 0,

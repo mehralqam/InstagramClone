@@ -1,5 +1,5 @@
 <% if params[:controller] === 'posts' %>
-  <%= form_with model:[@post, @comment], id: "comments-form" do |f| %>
+  <%= form_with model:[@post, @comment], id: 'comments-form' do |f| %>
     <%= render 'comments/form-fields', f: f %>
   <% end  %>
 <% else  %>

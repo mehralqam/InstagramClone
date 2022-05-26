@@ -5,7 +5,7 @@ module ApplicationHelper
     user_signed_in? && current_user.id == user_id
   end
 
-  def set_user(id)
+  def user(id)
     User.find_by(id: id)
   end
 end

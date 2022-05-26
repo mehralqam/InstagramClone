@@ -6,7 +6,7 @@
 class StoriesController < ApplicationController
   before_action :authenticate_user?, only: %i[index show destroy new]
   before_action :set_story, only: %i[destroy update edit]
-  before_action :authorize_story, only: %i[destroy]
+  before_action :authorize_story, only: %i[destroy update edit]
 
   def index
     @stories = Story.all
@@ -22,7 +22,7 @@ class StoriesController < ApplicationController
       if @story.save
         format.html { redirect_to users_url, notice: 'Story successfully created.' }
       else
-        format.html { render :new, notice: 'Story not created successfully .' }
+        format.html { render :new, notice: 'Something went wrong,Story not created.' }
       end
     end
   end
@@ -35,7 +35,7 @@ class StoriesController < ApplicationController
     flash[:notice] = if @story.destroy
                        'Story successfully removed '
                      else
-                       'Story could not be removed '
+                       'Something went wrong,Story not removed '
                      end
   end
 
@@ -43,9 +43,9 @@ class StoriesController < ApplicationController
 
   def update
     if current_user.stories.create(story_params)
-      redirect_to root_path, notice: 'Story updated.'
+      redirect_to root_path, notice: 'Story updated successfully'
     else
-      render 'edit', notice: 'Story not updated.'
+      render 'edit', notice: 'Something went wrong,Story not updated.'
     end
   end
 
