@@ -64,4 +64,5 @@ group :development, :test do
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec' # or gem 'rubocop-rspec' depending on your test suite
+  gem 'rspec-rails'
 end
