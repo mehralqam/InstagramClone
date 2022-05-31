@@ -4,8 +4,8 @@
   <% for followship in @user.followships %>
     <li>
       <%=h followship.follower.user_name %>
-      (<%= link_to "remove", followship, method: :delete %>)
     </li>
+    (<%= link_to "remove", followship, method: :delete %>)
   <% end %>
 </ul>
 
@@ -16,5 +16,8 @@
   <% for user in @user.inverse_followers %>
     <li><%=h user.user_name %>
     </li>
+  <% end %>
+  <% for followship in @user.inverse_followships%>
+    (<%= link_to "remove", followship, method: :delete %>)
   <% end %>
 </ul>

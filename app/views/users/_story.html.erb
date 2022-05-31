@@ -1,0 +1,16 @@
+<% if current_user.stories.present?%>
+  <%= link_to story_path(current_user.id) do%>
+    <%= image_tag current_user.avatar , width: "50px" , class: "rounded-circle"%>
+  <% end %>
+<% else %>
+  <%= link_to new_story_path  do%>
+    <%= image_tag current_user.avatar , width: "50px" , class: "rounded-circle"%>
+  <% end %>
+<% end %>
+<% current_user.followers&.each do |follower| %>
+  <% if follower.stories.present?%>
+    <%= link_to story_path(follower.id) do%>
+      <%= image_tag follower.avatar , width: "50px" , class: "rounded-circle"%>
+    <% end %>
+  <% end %>
+<% end %>

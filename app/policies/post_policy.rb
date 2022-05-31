@@ -1,27 +1,25 @@
 # frozen_string_literal: true
 
 class PostPolicy < ApplicationPolicy
-  byebug
   class Scope < Scope
     def resolve
-     @scope.includes(:comments).all
+      @scope.includes(:comments).all
     end
- end
+  end
 
- def index
-  byebug
- end
+  def create
+    record.user == user
+  end
 
- def destroy?
-  byebug
-  record.user == user
-end
+  def destroy?
+    record.user == user
+  end
 
-def edit?
- @record.user == current_user
-end
+  def update?
+    record.user == user
+  end
 
-def show?
- record.user == user
-end
+  def show?
+    record.user_id == user.id || record.user.inverse_followers.exists?(user.id)
+  end
 end

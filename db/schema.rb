@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_16_132312) do
+ActiveRecord::Schema.define(version: 2022_05_20_142611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,20 +41,17 @@ ActiveRecord::Schema.define(version: 2022_05_16_132312) do
     t.datetime "updated_at", null: false
     t.string "description", limit: 300, default: "", null: false
     t.bigint "user_id", null: false
-    t.bigint "post_id"
+    t.bigint "post_id", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "followrequests", force: :cascade do |t|
+  create_table "follow_requests", force: :cascade do |t|
     t.string "follow_user_id", null: false
-    t.string "follow_user_name"
-    t.integer "request_status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "user_id", null: false
-    t.string "user_name"
-    t.index ["follow_user_id", "user_id"], name: "index_followrequests_on_follow_user_id_and_user_id", unique: true
+    t.index ["follow_user_id", "user_id"], name: "index_follow_requests_on_follow_user_id_and_user_id", unique: true
   end
 
   create_table "followships", force: :cascade do |t|
@@ -72,12 +69,20 @@ ActiveRecord::Schema.define(version: 2022_05_16_132312) do
     t.index ["user_id"], name: "index_image_elements_on_user_id"
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_likes_on_post_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.string "caption", limit: 200, default: "", null: false
-    t.integer "likes", default: 0
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -100,8 +105,8 @@ ActiveRecord::Schema.define(version: 2022_05_16_132312) do
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "user_name", null: false
-    t.string "account_type", null: false
+    t.string "user_name", default: "", null: false
+    t.integer "account_type", default: 0, null: false
     t.index ["email"], name: "index_users_on_email"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end
@@ -110,6 +115,8 @@ ActiveRecord::Schema.define(version: 2022_05_16_132312) do
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "image_elements", "users"
+  add_foreign_key "likes", "posts"
+  add_foreign_key "likes", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "stories", "users"
 end

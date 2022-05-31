@@ -5,30 +5,25 @@
 # Post controller handles all the posts of user
 
 class PostsController < ApplicationController
-  before_action :set_post, only: [:edit,:update, :destroy, :post_like]
-  before_action :authenticate_user?, only: [:index,:show,:edit,:update, :destroy]
-
-  before_action :like_inc, only: [:post_like]
+  before_action :set_post, only: %i[show update destroy]
+  before_action :authenticate_user?, only: %i[index show update destroy]
+  before_action :authorize_post, only: %i[create show destroy update]
 
   def index
-    @posts = current_user.posts.all
-    authorize @posts
+    @posts = Post.all
   end
 
   def show
-    @post = Post.find(params[:id])
     @comment = Comment.new(post: @post)
-    @users = User.all
   end
 
   def create
     @post = current_user.posts.new(post_params)
     respond_to do |format|
       if @post.save
-        format.html { redirect_to action: 'index', notice: 'Post was successfully created.' }
-
+        format.html { redirect_to action: 'index', notice: 'Post successfully created.' }
       else
-        format.html { render :new, notice: 'Post wasnt successfully created.' }
+        format.html { render :new, notice: 'Something went wrong please try again' }
       end
     end
   end
@@ -38,43 +33,42 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post.destroy
+    flash[:notice] = if @post.destroy
+                       'Post successfully destroyed'
+                     else
+                       'Something went wrong please try again'
+                     end
     redirect_to posts_path
   end
 
-  def edit;end
-
   def update
-    if @post.update_attributes(params[:post])
-    else
-      render 'edit'
-    end
-  end
-
-  def post_like
-    @post.update(:likes=>@post.likes)
-    redirect_to @post
+    flash[:notice] = if @post.update(params[:post])
+                       'Post updated '
+                     else
+                       'Something went wrong please try again'
+                     end
   end
 
   private
+
   def post_params
-    params.require(:post).permit(:caption,images: [])
+    params.require(:post).permit(:caption, images: [])
   end
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.find_by(id: params[:id])
+    flash[:notice] = "Post with id #{params[:id]} doesnt exist" if @post.nil?
+  end
+
+  def authorize_post
+    authorize @post if @post.present?
   end
 
   def authenticate_user?
-    if(user_signed_in?)
-      return true
+    if user_signed_in?
+      true
     else
       redirect_to root_url, notice: 'You dont have right to view this page.'
+    end
   end
-end
-
-  def like_inc
-    @post.likes=@post.likes+1
-  end
-
 end

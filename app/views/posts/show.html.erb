@@ -1,50 +1,54 @@
-
 <div class="container">
-    <div class="carousel slide " id="my-slider" data-ride="carousel">
-      <div class="carousel-inner">
-          <% @post.images.each_with_index do |image,counter|%>
-             <% if counter==0%>
-                <div class="carousel-item active " id="first-one">
-                <%= image_tag image , width: "500px"%>
-                </div>
-                <%else%>
-                <div class="carousel-item ">
-                <%= image_tag image , width: "500px"%>
-                </div>
-              <% end %>
-             <%end%>
-       </div>
-          <a class="carousel-control-prev" href="#my-slider" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#my-slider" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
+  <div class="carousel slide " id="my-slider" data-ride="carousel">
+    <div class="carousel-inner">
+      <% @post.images.each_with_index do |image,counter|%>
+        <% if counter==0%>
+          <div class="carousel-item active " id="first-one">
+            <%= image_tag image , width: "500px"%>
+          </div>
+        <%else%>
+          <div class="carousel-item ">
+            <%= image_tag image , width: "500px"%>
+          </div>
+        <% end %>
+      <%end%>
     </div>
-    <%= link_to (image_tag('heart.jpg',width:"20px")), post_like_post_path(@post,likes: @post.likes),method: :patch, remote: true, id: "like-button"  %>
-    <p id="like"><%= @post.likes%></p>
-     <%= link_to "Delete Post",  post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-outline-danger" %>
+    <a class="carousel-control-prev" href="#my-slider" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#my-slider" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+  <% pre_like = set_post_like(@post) %>
+  <% if pre_like %>
+  <%= link_to 'Unlike', post_like_path(@post, pre_like), method: :delete , data: { 'js-un-like-link' => true },remote: true%>
+  <% else %>
+  <%= link_to 'Like', post_likes_path(@post), method: :post , data: { 'js-like-link' => true },remote: true%>
+  <% end %>
+  <p><%= @post.likes.count %> </p>
+  <%= link_to "Delete Post",  post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-outline-danger" %>
 
-<div class="card mb-3">
+  <div class="card mb-3">
     <div class="card-body">
-        <%= @post.caption %>
+      <%= @post.caption %>
     </div>
-</div>
-<div class="card mb-3">
+  </div>
+  <div class="card mb-3">
     <div class="card-header">
-        <h4 class="mb-0">Add A Comment:</h4>
+      <h4 class="mb-0">Add A Comment:</h4>
     </div>
     <div class="card-body">
-        <%= render "comments/form" %>
+      <%= render "comments/form" %>
     </div>
-</div>
-<div class="card mb-3">
+  </div>
+  <div class="card mb-3">
     <div class="card-header">
-        <h4>Comments:</h4>
+      <h4>Comments:</h4>
     </div>
     <div id="comments" class="card-body">
-        <%= render @post.comments %>
+      <%= render @post.comments %>
     </div>
-</div>
+  </div>

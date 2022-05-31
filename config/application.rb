@@ -20,5 +20,6 @@ module InstagramClone
     # the framework and any gems in your application.
 
     config.active_job.queue_adapter = :sidekiq
+    config.assets.initialize_on_precompile = false
   end
 end

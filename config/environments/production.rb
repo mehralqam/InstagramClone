@@ -25,8 +25,7 @@ Rails.application.configure do
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = :uglifier
-  # config.assets.css_compressor = :sass
+  config.assets.js_compressor = Uglifier.new(harmony: true) # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
@@ -42,6 +41,20 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system (see config/storage.yml for options)
   config.active_storage.service = :local
+
+  config.action_mailer.default_url_options = { host: 'devsinc-gram.herokuapp.com' }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 465,
+    domain: 'gmail.com',
+    user_name: ENV['GMAIL_ID'],
+    password: ENV['GMAIL_PWD'],
+    authentication: 'plain',
+    enable_starttls_auto: true,
+    ssl: true
+  }
 
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil

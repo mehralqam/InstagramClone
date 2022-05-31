@@ -1,43 +1,56 @@
 # frozen_string_literal: true
 
-# app/controllers/Users_controller.rb
+# app / controllers / Users_controller.rb
 
 # Controller to users
 class UsersController < ApplicationController
-  def show
-    @user = current_user
-   end
-
   def create
     @user = User.new
-   end
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to action: 'index', notice: 'User successfully created.' }
+      else
+        format.html { render :index, notice: 'User not created successfully.' }
+      end
+    end
+  end
 
   def new
     @user = User.new
-   end
+  end
 
   def index
     @users = User.where('id != ?', current_user)
-    @can_follow_users = User.can_follow_users(current_user)
-    @followers = current_user.followers
-    byebug
-    authorize @followers
-    @searched_users = @users.text_search(params[:search]) if params[:search].present?
-
+    @open_account_users = User.open_account_users(current_user)
+    @searched_users = @users.search_users(params[:search]) if params[:search]
     respond_to do |format|
       format.js
       format.html
     end
   end
 
-  # def update
-  #   if @post.update_attributes(params[:user])
-  #     else
-  #       render edit_user_registration_path
-  #   end
-  # end
+  def show
+    @user = User.find_by(id: params[:id])
+    flash[:notice] = "User with id #{params[:id]} doesnt exist" if @user.blank?
+  end
+
+  def edit; end
+
+  def update
+    flash[:notice] = if @user.update(params[:user])
+                       'User profile updated '
+                     else
+                       'User profile can not be updated'
+                     end
+  end
+
+  private
 
   def user_params
-    params.require(:user).permit(:search)
+    params.require(:user).permit(:search, :avatar)
+  end
+
+  def search_results
+    render partial: 'users/dashboard', locals: { user: params[:user] }, class: 'btn btn-secondary'
   end
 end

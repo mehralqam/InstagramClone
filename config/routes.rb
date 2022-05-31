@@ -4,18 +4,18 @@ Rails.application.routes.draw do
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
   devise_for :users
-  resources :users do
-    resources :followrequests
-  end
-  resources :image_elements
-  resources :posts
-  resources :stories
-  resources :followships
-  resources :posts do
-    resources :comments
+  resources :users, except: %i[destroy] do
+    resources :follow_requests, except: %i[show update edit destroy]
     member do
-      patch :post_like
+      get :search_results
     end
   end
+  resources :image_elements
+  resources :posts, except: %i[edit] do
+    resources :likes, except: %i[new update edit ]
+    resources :comments, except: %i[index new show]
+  end
+  resources :stories
+  resources :followships, except: %i[edit show update]
   root 'users#index'
 end
