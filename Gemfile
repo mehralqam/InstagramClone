@@ -60,9 +60,10 @@ end
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'rspec-rails'
   gem 'rubocop'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
+  gem 'shoulda-matchers', '~> 5.0'
   gem 'rubocop-rspec' # or gem 'rubocop-rspec' depending on your test suite
-  gem 'rspec-rails'
 end
